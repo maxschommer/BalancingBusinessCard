@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 3
+Sheet 1 4
 Title ""
 Date ""
 Rev ""
@@ -138,7 +138,7 @@ U 1 1 5BCBF241
 P 5150 6250
 F 0 "J?" V 5078 6177 50  0000 C CNN
 F 1 "TestPoints" V 4987 6177 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical" H 5150 6250 50  0001 C CNN
+F 2 "CustomFootprints:Testpoint_1x10" H 5150 6250 50  0001 C CNN
 F 3 "~" H 5150 6250 50  0001 C CNN
 	1    5150 6250
 	0    -1   -1   0   
@@ -209,4 +209,66 @@ Wire Wire Line
 	4000 4050 3800 4050
 Wire Wire Line
 	4000 3950 3800 3950
+$Sheet
+S 7500 950  1600 1100
+U 5BCBF6E4
+F0 "Accelerometer" 50
+F1 "LIS3DHTR.sch" 50
+F2 "SDA" I L 7500 1300 50 
+F3 "SCL" I L 7500 1400 50 
+$EndSheet
+Text Label 7300 1300 2    50   ~ 0
+SDA
+Text Label 7050 1400 2    50   ~ 0
+SCL
+Wire Wire Line
+	7500 1300 7350 1300
+$Comp
+L Device:R R?
+U 1 1 5BCC12E2
+P 7350 1150
+F 0 "R?" H 7420 1196 50  0000 L CNN
+F 1 "1k" H 7420 1105 50  0000 L CNN
+F 2 "" V 7280 1150 50  0001 C CNN
+F 3 "~" H 7350 1150 50  0001 C CNN
+	1    7350 1150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7300 1300 7350 1300
+Connection ~ 7350 1300
+$Comp
+L power:+1V8 #PWR?
+U 1 1 5BCC13E8
+P 7200 1000
+F 0 "#PWR?" H 7200 850 50  0001 C CNN
+F 1 "+1V8" H 7215 1173 50  0000 C CNN
+F 2 "" H 7200 1000 50  0001 C CNN
+F 3 "" H 7200 1000 50  0001 C CNN
+	1    7200 1000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7350 1000 7200 1000
+Wire Wire Line
+	7200 1000 7100 1000
+Connection ~ 7200 1000
+$Comp
+L Device:R R?
+U 1 1 5BCC14CF
+P 7100 1250
+F 0 "R?" H 6950 1350 50  0000 L CNN
+F 1 "1k" H 6950 1250 50  0000 L CNN
+F 2 "" V 7030 1250 50  0001 C CNN
+F 3 "~" H 7100 1250 50  0001 C CNN
+	1    7100 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7100 1000 7100 1100
+Wire Wire Line
+	7050 1400 7100 1400
+Wire Wire Line
+	7100 1400 7500 1400
+Connection ~ 7100 1400
 $EndSCHEMATC
