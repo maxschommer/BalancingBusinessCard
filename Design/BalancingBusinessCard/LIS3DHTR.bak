@@ -20,7 +20,7 @@ U 1 1 5BCBF7EE
 P 4250 2100
 F 0 "U?" H 5750 2593 60  0000 C CNN
 F 1 "LIS3DHTR" H 5750 2487 60  0000 C CNN
-F 2 "CustomFootprints:LIS3DHTR" H 5750 2340 60  0001 C CNN
+F 2 "LGA-16_3x3x1mm" H 5750 2340 60  0001 C CNN
 F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/3c/ae/50/85/d6/b1/46/fe/CD00274221.pdf/files/CD00274221.pdf/jcr:content/translations/en.CD00274221.pdf" H 5750 2381 60  0000 C CNN
 F 4 "497-10613-1-ND" H 4250 2100 50  0001 C CNN "Digikey"
 	1    4250 2100

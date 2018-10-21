@@ -193,60 +193,35 @@ F 3 "" H 3100 4850 50  0001 C CNN
 	1    3100 4850
 	1    0    0    -1  
 $EndComp
-Text Label 4100 3850 0    50   ~ 0
+Text Label 4000 3850 0    50   ~ 0
 MOSI
-Text Label 4100 3950 0    50   ~ 0
+Wire Wire Line
+	4000 3850 3800 3850
+Text Label 4000 3950 0    50   ~ 0
 MISO
-Text Label 4100 4050 0    50   ~ 0
+Text Label 4000 4050 0    50   ~ 0
 SCK
+Wire Wire Line
+	4000 4050 3800 4050
+Wire Wire Line
+	4000 3950 3800 3950
 Text Label 7500 4200 2    50   ~ 0
 VCL
-$Comp
-L Device:L L?
-U 1 1 5BCBF7D3
-P 5300 1100
-F 0 "L?" V 5122 1100 50  0000 C CNN
-F 1 "L" V 5213 1100 50  0000 C CNN
-F 2 "" H 5300 1100 50  0001 C CNN
-F 3 "~" H 5300 1100 50  0001 C CNN
-	1    5300 1100
-	0    1    1    0   
-$EndComp
-Text Label 5750 1100 0    50   ~ 0
+Text Label 5150 1100 0    50   ~ 0
 VCL
 Wire Wire Line
 	4400 1100 5150 1100
 $Comp
-L Device:C C?
-U 1 1 5BCC09EB
-P 5500 1300
-F 0 "C?" H 5615 1346 50  0000 L CNN
-F 1 "C" H 5615 1255 50  0000 L CNN
-F 2 "" H 5538 1150 50  0001 C CNN
-F 3 "~" H 5500 1300 50  0001 C CNN
-	1    5500 1300
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5450 1100 5500 1100
-Wire Wire Line
-	5500 1100 5500 1150
-Wire Wire Line
-	5500 1100 5750 1100
-Connection ~ 5500 1100
-$Comp
 L power:GND #PWR?
 U 1 1 5BCC0AD3
-P 5500 1500
-F 0 "#PWR?" H 5500 1250 50  0001 C CNN
-F 1 "GND" H 5505 1327 50  0000 C CNN
-F 2 "" H 5500 1500 50  0001 C CNN
-F 3 "" H 5500 1500 50  0001 C CNN
-	1    5500 1500
+P 5150 1400
+F 0 "#PWR?" H 5150 1150 50  0001 C CNN
+F 1 "GND" H 5155 1227 50  0000 C CNN
+F 2 "" H 5150 1400 50  0001 C CNN
+F 3 "" H 5150 1400 50  0001 C CNN
+	1    5150 1400
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5500 1450 5500 1500
 $Sheet
 S 7500 950  1600 1100
 U 5BCBF6E4
@@ -320,46 +295,23 @@ INA
 Wire Wire Line
 	4400 1100 4400 1050
 Connection ~ 4400 1100
-Text Label 7500 2500 2    50   ~ 0
-LED_0
-Text Label 7500 2600 2    50   ~ 0
-LED_1
-Text Label 7500 2700 2    50   ~ 0
-LED_2
-Text Label 7500 2800 2    50   ~ 0
-LED_3
-Text Label 7500 2900 2    50   ~ 0
-LED_4
-Text Label 7500 3000 2    50   ~ 0
-LED_5
-Text Label 7500 3100 2    50   ~ 0
-LED_6
-Text Label 7500 3200 2    50   ~ 0
-LED_7
-Text Label 7500 3300 2    50   ~ 0
-LED_8
-Text Label 3800 3350 0    50   ~ 0
-LED_0
-Text Label 3800 3450 0    50   ~ 0
-LED_1
-Text Label 3800 3550 0    50   ~ 0
-LED_2
-Text Label 3800 3650 0    50   ~ 0
-LED_3
-Text Label 3800 3950 0    50   ~ 0
-LED_4
-Text Label 3800 4150 0    50   ~ 0
-LED_5
-Text Label 3800 4250 0    50   ~ 0
-LED_6
-Text Label 3800 4350 0    50   ~ 0
-LED_7
-Text Label 3800 4450 0    50   ~ 0
-LED_8
-Wire Wire Line
-	3800 3850 4100 3850
-Wire Wire Line
-	4100 3950 3800 3950
-Wire Wire Line
-	3800 4050 4100 4050
+$Comp
+L Device:C C?
+U 1 1 5BCC09EB
+P 5150 1250
+F 0 "C?" H 5265 1296 50  0000 L CNN
+F 1 "10uF" H 5265 1205 50  0000 L CNN
+F 2 "" H 5188 1100 50  0001 C CNN
+F 3 "~" H 5150 1250 50  0001 C CNN
+	1    5150 1250
+	1    0    0    -1  
+$EndComp
+Text Label 3800 2950 0    50   ~ 0
+ADC0
+Text Label 3800 3050 0    50   ~ 0
+ADC1
+Text Label 3800 3150 0    50   ~ 0
+INA
+Text Label 3800 3250 0    50   ~ 0
+INB
 $EndSCHEMATC
