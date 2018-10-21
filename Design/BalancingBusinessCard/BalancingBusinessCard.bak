@@ -49,4 +49,8 @@ Text Label 3800 2950 0    50   ~ 0
 ADC0
 Text Label 3800 3050 0    50   ~ 0
 ADC1
+Text Label 3800 3850 0    50   ~ 0
+SDA
+Text Label 3800 4050 0    50   ~ 0
+SCL
 $EndSCHEMATC

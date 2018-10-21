@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:BalancingBusinessCard-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -14,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L MCU_Microchip_ATtiny:ATtiny261-20SU U?
+L MCU_Microchip_ATtiny:ATtiny261A-SU U?
 U 1 1 5BCB9B43
 P 3100 3750
 F 0 "U?" H 2470 3796 50  0000 R CNN

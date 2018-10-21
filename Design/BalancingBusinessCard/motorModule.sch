@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:BalancingBusinessCard-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -28,6 +29,8 @@ $Comp
 L Custom:AP1017AEN U?
 U 1 1 5BCBEC9C
 P 4300 3750
+AR Path="/5BCBEC9C" Ref="U?"  Part="1" 
+AR Path="/5BCB9C49/5BCBEC9C" Ref="U?"  Part="1" 
 F 0 "U?" H 4300 4125 50  0000 C CNN
 F 1 "AP1017AEN" H 4300 4034 50  0000 C CNN
 F 2 "" H 4300 3750 50  0001 C CNN
