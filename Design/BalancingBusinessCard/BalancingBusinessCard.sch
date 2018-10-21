@@ -180,7 +180,7 @@ Text Label 2800 5950 2    50   ~ 0
 RESET
 Text Label 3800 4550 0    50   ~ 0
 RESET
-Text Label 4950 6050 1    50   ~ 0
+Text Label 5050 6050 1    50   ~ 0
 RESET
 $Comp
 L power:GND #PWR?
@@ -362,4 +362,54 @@ Wire Wire Line
 	4100 3950 3800 3950
 Wire Wire Line
 	3800 4050 4100 4050
+Wire Wire Line
+	3200 4850 3100 4850
+Connection ~ 3100 4850
+Wire Wire Line
+	3200 2650 3100 2650
+$Comp
+L power:+1V8 #PWR?
+U 1 1 5BCC0FB3
+P 3100 2400
+F 0 "#PWR?" H 3100 2250 50  0001 C CNN
+F 1 "+1V8" H 3115 2573 50  0000 C CNN
+F 2 "" H 3100 2400 50  0001 C CNN
+F 3 "" H 3100 2400 50  0001 C CNN
+	1    3100 2400
+	1    0    0    -1  
+$EndComp
+Connection ~ 3100 2650
+Text Label 4950 6050 1    50   ~ 0
+VCL
+Text Label 5650 6050 1    50   ~ 0
+ADC1
+Text Label 5550 6050 1    50   ~ 0
+ADC0
+Wire Wire Line
+	3100 2650 3100 2400
+Wire Wire Line
+	3100 2400 3450 2400
+Connection ~ 3100 2400
+$Comp
+L Device:C C?
+U 1 1 5BCC392A
+P 3600 2400
+F 0 "C?" V 3852 2400 50  0000 C CNN
+F 1 "10uF" V 3761 2400 50  0000 C CNN
+F 2 "" H 3638 2250 50  0001 C CNN
+F 3 "~" H 3600 2400 50  0001 C CNN
+	1    3600 2400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5BCC3A23
+P 3750 2400
+F 0 "#PWR?" H 3750 2150 50  0001 C CNN
+F 1 "GND" H 3755 2227 50  0000 C CNN
+F 2 "" H 3750 2400 50  0001 C CNN
+F 3 "" H 3750 2400 50  0001 C CNN
+	1    3750 2400
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
