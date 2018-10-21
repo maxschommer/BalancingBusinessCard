@@ -25,15 +25,28 @@ F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/atmel-2588-8-bit-avr-microc
 	1    0    0    -1  
 $EndComp
 $Sheet
-S 6400 1400 1600 1200
-U 5BCB9BF4
-F0 "LightModule" 50
-F1 "lightModule.sch" 50
-$EndSheet
-$Sheet
-S 6400 2800 1600 1200
+S 7500 3700 1600 1200
 U 5BCB9C49
 F0 "MotorModule" 50
 F1 "motorModule.sch" 50
 $EndSheet
+$Sheet
+S 7500 2300 1600 1200
+U 5BCB9BF4
+F0 "LightModule" 50
+F1 "lightModule.sch" 50
+F2 "LED_1" I L 7500 2600 50 
+F3 "LED_2" I L 7500 2700 50 
+F4 "LED_3" I L 7500 2800 50 
+F5 "LED_4" I L 7500 2900 50 
+F6 "LED_5" I L 7500 3000 50 
+F7 "LED_6" I L 7500 3100 50 
+F8 "LED_7" I L 7500 3200 50 
+F9 "LED_0" I L 7500 2500 50 
+F10 "LED_8" I L 7500 3300 50 
+$EndSheet
+Text Label 3800 2950 0    50   ~ 0
+ADC0
+Text Label 3800 3050 0    50   ~ 0
+ADC1
 $EndSCHEMATC
