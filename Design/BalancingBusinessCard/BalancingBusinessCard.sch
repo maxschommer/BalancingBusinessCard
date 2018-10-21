@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:BalancingBusinessCard-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -107,4 +108,105 @@ F 3 "" H 7050 4300 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	7050 4300 7500 4300
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even ICSP1
+U 1 1 5BCBEC7A
+P 3000 5850
+F 0 "ICSP1" H 3050 6050 50  0000 C CNN
+F 1 "Conn_02x03_Odd_Even" H 3050 5650 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 3000 5850 50  0001 C CNN
+F 3 "~" H 3000 5850 50  0001 C CNN
+	1    3000 5850
+	1    0    0    -1  
+$EndComp
+Text Label 3300 5850 0    50   ~ 0
+MOSI
+$Comp
+L power:+1V8 #PWR?
+U 1 1 5BCBF021
+P 3300 5750
+F 0 "#PWR?" H 3300 5600 50  0001 C CNN
+F 1 "+1V8" H 3315 5923 50  0000 C CNN
+F 2 "" H 3300 5750 50  0001 C CNN
+F 3 "" H 3300 5750 50  0001 C CNN
+	1    3300 5750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x10_Male J?
+U 1 1 5BCBF241
+P 5150 6250
+F 0 "J?" V 5078 6177 50  0000 C CNN
+F 1 "TestPoints" V 4987 6177 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical" H 5150 6250 50  0001 C CNN
+F 3 "~" H 5150 6250 50  0001 C CNN
+	1    5150 6250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+1V8 #PWR?
+U 1 1 5BCBF527
+P 4850 6050
+F 0 "#PWR?" H 4850 5900 50  0001 C CNN
+F 1 "+1V8" H 4865 6223 50  0000 C CNN
+F 2 "" H 4850 6050 50  0001 C CNN
+F 3 "" H 4850 6050 50  0001 C CNN
+	1    4850 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+BATT #PWR?
+U 1 1 5BCBF6B8
+P 4750 6050
+F 0 "#PWR?" H 4750 5900 50  0001 C CNN
+F 1 "+BATT" H 4765 6223 50  0000 C CNN
+F 2 "" H 4750 6050 50  0001 C CNN
+F 3 "" H 4750 6050 50  0001 C CNN
+	1    4750 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5BCBF839
+P 3300 5950
+F 0 "#PWR?" H 3300 5700 50  0001 C CNN
+F 1 "GND" V 3305 5822 50  0000 R CNN
+F 2 "" H 3300 5950 50  0001 C CNN
+F 3 "" H 3300 5950 50  0001 C CNN
+	1    3300 5950
+	0    -1   -1   0   
+$EndComp
+Text Label 2800 5750 2    50   ~ 0
+MISO
+Text Label 2800 5850 2    50   ~ 0
+SCK
+Text Label 2800 5950 2    50   ~ 0
+RESET
+Text Label 3800 4550 0    50   ~ 0
+RESET
+Text Label 4950 6050 1    50   ~ 0
+RESET
+$Comp
+L power:GND #PWR?
+U 1 1 5BCCA97D
+P 3100 4850
+F 0 "#PWR?" H 3100 4600 50  0001 C CNN
+F 1 "GND" H 3105 4677 50  0000 C CNN
+F 2 "" H 3100 4850 50  0001 C CNN
+F 3 "" H 3100 4850 50  0001 C CNN
+	1    3100 4850
+	1    0    0    -1  
+$EndComp
+Text Label 4000 3850 0    50   ~ 0
+MOSI
+Wire Wire Line
+	4000 3850 3800 3850
+Text Label 4000 3950 0    50   ~ 0
+MISO
+Text Label 4000 4050 0    50   ~ 0
+SCK
+Wire Wire Line
+	4000 4050 3800 4050
+Wire Wire Line
+	4000 3950 3800 3950
 $EndSCHEMATC
