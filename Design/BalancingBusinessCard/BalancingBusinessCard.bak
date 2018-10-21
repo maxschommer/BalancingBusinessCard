@@ -14,7 +14,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L MCU_Microchip_ATtiny:ATtiny261-20SU U?
+L MCU_Microchip_ATtiny:ATtiny261A-SU U?
 U 1 1 5BCB9B43
 P 3100 3750
 F 0 "U?" H 2470 3796 50  0000 R CNN
@@ -53,4 +53,15 @@ Text Label 3800 3850 0    50   ~ 0
 SDA
 Text Label 3800 4050 0    50   ~ 0
 SCL
+$Comp
+L Device:Battery BT?
+U 1 1 5BCBEFF8
+P 4400 1300
+F 0 "BT?" H 4508 1346 50  0000 L CNN
+F 1 "Battery" H 4508 1255 50  0000 L CNN
+F 2 "" V 4400 1360 50  0001 C CNN
+F 3 "~" V 4400 1360 50  0001 C CNN
+	1    4400 1300
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
