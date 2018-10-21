@@ -197,18 +197,12 @@ F 3 "" H 3100 4850 50  0001 C CNN
 	1    3100 4850
 	1    0    0    -1  
 $EndComp
-Text Label 4000 3850 0    50   ~ 0
+Text Label 4100 3850 0    50   ~ 0
 MOSI
-Wire Wire Line
-	4000 3850 3800 3850
-Text Label 4000 3950 0    50   ~ 0
+Text Label 4100 3950 0    50   ~ 0
 MISO
-Text Label 4000 4050 0    50   ~ 0
+Text Label 4100 4050 0    50   ~ 0
 SCK
-Wire Wire Line
-	4000 4050 3800 4050
-Wire Wire Line
-	4000 3950 3800 3950
 Text Label 7500 4200 2    50   ~ 0
 VCL
 $Comp
@@ -319,4 +313,46 @@ Wire Wire Line
 Wire Wire Line
 	7100 1400 7500 1400
 Connection ~ 7100 1400
+Text Label 7500 2500 2    50   ~ 0
+LED_0
+Text Label 7500 2600 2    50   ~ 0
+LED_1
+Text Label 7500 2700 2    50   ~ 0
+LED_2
+Text Label 7500 2800 2    50   ~ 0
+LED_3
+Text Label 7500 2900 2    50   ~ 0
+LED_4
+Text Label 7500 3000 2    50   ~ 0
+LED_5
+Text Label 7500 3100 2    50   ~ 0
+LED_6
+Text Label 7500 3200 2    50   ~ 0
+LED_7
+Text Label 7500 3300 2    50   ~ 0
+LED_8
+Text Label 3800 3350 0    50   ~ 0
+LED_0
+Text Label 3800 3450 0    50   ~ 0
+LED_1
+Text Label 3800 3550 0    50   ~ 0
+LED_2
+Text Label 3800 3650 0    50   ~ 0
+LED_3
+Text Label 3800 3950 0    50   ~ 0
+LED_4
+Text Label 3800 4150 0    50   ~ 0
+LED_5
+Text Label 3800 4250 0    50   ~ 0
+LED_6
+Text Label 3800 4350 0    50   ~ 0
+LED_7
+Text Label 3800 4450 0    50   ~ 0
+LED_8
+Wire Wire Line
+	3800 3850 4100 3850
+Wire Wire Line
+	4100 3950 3800 3950
+Wire Wire Line
+	3800 4050 4100 4050
 $EndSCHEMATC
