@@ -47,4 +47,34 @@ Text HLabel 3900 4400 0    50   Input ~ 0
 DIFF1
 Text HLabel 4700 4400 2    50   Input ~ 0
 DIFF2
+Text HLabel 3900 3600 0    50   Input ~ 0
+INA
+Text HLabel 3900 3700 0    50   Input ~ 0
+INB
+$Comp
+L power:+1V8 #PWR?
+U 1 1 5BCBEF43
+P 4800 3600
+F 0 "#PWR?" H 4800 3450 50  0001 C CNN
+F 1 "+1V8" H 4815 3773 50  0000 C CNN
+F 2 "" H 4800 3600 50  0001 C CNN
+F 3 "" H 4800 3600 50  0001 C CNN
+	1    4800 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+1V8 #PWR?
+U 1 1 5BCBEF69
+P 3550 3800
+F 0 "#PWR?" H 3550 3650 50  0001 C CNN
+F 1 "+1V8" H 3565 3973 50  0000 C CNN
+F 2 "" H 3550 3800 50  0001 C CNN
+F 3 "" H 3550 3800 50  0001 C CNN
+	1    3550 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 3800 3900 3800
+Wire Wire Line
+	4700 3600 4800 3600
 $EndSCHEMATC
