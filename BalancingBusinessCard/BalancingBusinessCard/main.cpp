@@ -52,13 +52,24 @@ void ShowLine(uint16_t line) {
     PORTB = ((line & 0b111100000) >> 2) | ((line & 0b000010000) >> 3);
 }
 
+void SetMotor(bool pin1, bool pin2) {
+    PORTA = (PORTA & 0b11110011) | (pin1 ? 0b00000100 : 0) | (pin2 ? 0b00001000 : 0);
+}
+
 int main (void)
 {
 	// set PB3 to be output
 	DDRB = 0b01111010;
 	DDRA = 0b11110000;
 	while (1) {
-		
+
+        SetMotor(true, false);
+        _delay_ms(1000);
+        SetMotor(false, true);
+        _delay_ms(1000);
+        SetMotor(false, false);
+        _delay_ms(1000);
+
 //		// flash# 1:
 //		// set PB3 high
 //		PORTA = 0b11110000;
@@ -69,11 +80,12 @@ int main (void)
 //		PORTB = 0b00000000;
 //		_delay_ms(1000);
 
-        for(uint8_t i = 0; i < sizeof(Message); i++){
-            ShowLine(Message[i]);
-            _delay_ms(3);
-        }
-
-        _delay_ms(6*sizeof(Message));
+// Display a message
+//        for(uint8_t i = 0; i < sizeof(Message); i++){
+//            ShowLine(Message[i]);
+//            _delay_ms(3);
+//        }
+//
+//        _delay_ms(6*sizeof(Message));
 	}
 }
