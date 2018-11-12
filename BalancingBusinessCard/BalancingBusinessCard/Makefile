@@ -16,13 +16,13 @@ COMPILE = avr-gcc -Wall -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE)
 # symbolic targets:
 all:	main.hex
 
-.c.o:
+.cpp.o:
 	$(COMPILE) -c $< -o $@
 
 .S.o:
 	$(COMPILE) -x assembler-with-cpp -c $< -o $@
 
-.c.s:
+.cpp.s:
 	$(COMPILE) -S $< -o $@
 
 flash:	all
