@@ -44,6 +44,7 @@ const uint16_t Message[] = {
 0b100000001,
 0b100000001,
 0b111111111,
+0b000000000,
 };
 
 void ShowLine(uint16_t line) {
@@ -58,21 +59,21 @@ int main (void)
 	DDRA = 0b11110000;
 	while (1) {
 		
-		// flash# 1:
-		// set PB3 high
-		PORTA = 0b11110000;
-		PORTB = 0b01111010;
-		_delay_ms(1000);
-		// set PB3 low
-		PORTA = 0b00000000;
-		PORTB = 0b00000000;
-		_delay_ms(1000);
+//		// flash# 1:
+//		// set PB3 high
+//		PORTA = 0b11110000;
+//		PORTB = 0b01111010;
+//		_delay_ms(1000);
+//		// set PB3 low
+//		PORTA = 0b00000000;
+//		PORTB = 0b00000000;
+//		_delay_ms(1000);
 
-        for(uint8_t i = 0; i < sizeof(TestLEDS); i++){
-            ShowLine(TestLEDS[i]);
-            _delay_ms(300);
+        for(uint8_t i = 0; i < sizeof(Message); i++){
+            ShowLine(Message[i]);
+            _delay_ms(3);
         }
 
-//        _delay_ms(1000);
+        _delay_ms(6*sizeof(Message));
 	}
 }
