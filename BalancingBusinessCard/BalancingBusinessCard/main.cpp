@@ -8,6 +8,18 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
+const uint16_t TestLEDS[] PROGMEM ={
+	0b000000001,
+	0b000000010,
+	0b000000100,
+	0b000001000,
+	0b000010000,
+	0b000100000,
+	0b001000000,
+	0b010000000,
+	0b100000000
+}
+
 const uint16_t Message[] = {
 0b111111111, // H
 0b000010000,
