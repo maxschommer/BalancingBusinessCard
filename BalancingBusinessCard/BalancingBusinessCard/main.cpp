@@ -8,7 +8,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-const uint16_t TestLEDS[] PROGMEM ={
+const uint16_t TestLEDS[]  ={
 	0b000000001,
 	0b000000010,
 	0b000000100,
@@ -18,7 +18,7 @@ const uint16_t TestLEDS[] PROGMEM ={
 	0b001000000,
 	0b010000000,
 	0b100000000
-}
+};
 
 const uint16_t Message[] = {
 0b111111111, // H
@@ -47,8 +47,8 @@ const uint16_t Message[] = {
 };
 
 void ShowLine(uint16_t line) {
-    PORTA = line & 0b000001111 << 4;
-    PORTB = (line & 0b111100000 >> 1) | (line & 0b000010000 >>3);
+    PORTA = (line & 0b000001111) << 4;
+    PORTB = ((line & 0b111100000) >> 2) | ((line & 0b000010000) >> 3);
 }
 
 int main (void)
@@ -68,9 +68,11 @@ int main (void)
 		PORTB = 0b00000000;
 		_delay_ms(1000);
 
-        for(uint8_t i = 0; i < sizeof(Message) / sizeof(Message[0]); i++){
-            ShowLine(Message[i]);
-            _delay_ms(10);
+        for(uint8_t i = 0; i < sizeof(TestLEDS); i++){
+            ShowLine(TestLEDS[i]);
+            _delay_ms(300);
         }
+
+//        _delay_ms(1000);
 	}
 }
