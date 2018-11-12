@@ -8,7 +8,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-const uint16_t TestLEDS[]  ={
+const uint16_t TestLEDS[] = {
 	0b000000001,
 	0b000000010,
 	0b000000100,
@@ -70,21 +70,21 @@ int main (void)
         SetMotor(false, false);
         _delay_ms(1000);
 
-//		// flash# 1:
+		// flash 1:
 //		// set PB3 high
 //		PORTA = 0b11110000;
 //		PORTB = 0b01111010;
-//		_delay_ms(1000);
+//		_delay_ms(100);
 //		// set PB3 low
 //		PORTA = 0b00000000;
 //		PORTB = 0b00000000;
-//		_delay_ms(1000);
+//		_delay_ms(100);
 
 // Display a message
-//        for(uint8_t i = 0; i < sizeof(Message); i++){
-//            ShowLine(Message[i]);
-//            _delay_ms(3);
-//        }
+        for(uint8_t i = 0; i < sizeof(Message); i++){
+            ShowLine(Message[i]);
+            _delay_ms(3);
+        }
 //
 //        _delay_ms(6*sizeof(Message));
 	}
