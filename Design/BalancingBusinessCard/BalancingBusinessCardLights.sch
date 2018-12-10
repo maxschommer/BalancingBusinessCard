@@ -82,17 +82,6 @@ $EndComp
 Text Label 3300 5850 0    50   ~ 0
 MOSI
 $Comp
-L power:+BATT #PWR0106
-U 1 1 5BCBF6B8
-P 4750 6050
-F 0 "#PWR0106" H 4750 5900 50  0001 C CNN
-F 1 "+BATT" V 4750 6300 50  0000 C CNN
-F 2 "" H 4750 6050 50  0001 C CNN
-F 3 "" H 4750 6050 50  0001 C CNN
-	1    4750 6050
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR0107
 U 1 1 5BCBF839
 P 3300 5950
@@ -111,8 +100,6 @@ Text Label 2800 5950 2    50   ~ 0
 RESET
 Text Label 3800 4550 0    50   ~ 0
 RESET
-Text Label 4950 6050 1    50   ~ 0
-RESET
 $Comp
 L power:GND #PWR0108
 U 1 1 5BCCA97D
@@ -130,21 +117,6 @@ Text Label 4100 3950 0    50   ~ 0
 MISO
 Text Label 4100 4050 0    50   ~ 0
 SCK
-Text Label 5150 1100 0    50   ~ 0
-VCL
-Wire Wire Line
-	4400 1100 5150 1100
-$Comp
-L power:GND #PWR0109
-U 1 1 5BCC0AD3
-P 5150 1400
-F 0 "#PWR0109" H 5150 1150 50  0001 C CNN
-F 1 "GND" H 5155 1227 50  0000 C CNN
-F 2 "" H 5150 1400 50  0001 C CNN
-F 3 "" H 5150 1400 50  0001 C CNN
-	1    5150 1400
-	1    0    0    -1  
-$EndComp
 $Sheet
 S 7500 950  1600 1100
 U 5BCBF6E4
@@ -153,24 +125,13 @@ F1 "LIS3DHTR.sch" 50
 F2 "SDA" I L 7500 1300 50 
 F3 "SCL" I L 7500 1400 50 
 $EndSheet
-Text Label 7300 1300 2    50   ~ 0
+Text Label 7175 1300 2    50   ~ 0
 SDA
-Text Label 7050 1400 2    50   ~ 0
+Text Label 6825 1400 2    50   ~ 0
 SCL
 Wire Wire Line
 	4400 1100 4400 1050
 Connection ~ 4400 1100
-$Comp
-L Device:C C102
-U 1 1 5BCC09EB
-P 5150 1250
-F 0 "C102" H 5265 1296 50  0000 L CNN
-F 1 "10uF" H 5265 1205 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 5188 1100 50  0001 C CNN
-F 3 "~" H 5150 1250 50  0001 C CNN
-	1    5150 1250
-	1    0    0    -1  
-$EndComp
 Text Label 7500 2500 2    50   ~ 0
 LED_0
 Text Label 7500 2600 2    50   ~ 0
@@ -199,13 +160,13 @@ Text Label 3800 3550 0    50   ~ 0
 LED_3
 Text Label 3800 3650 0    50   ~ 0
 LED_4
-Text Label 3800 4150 0    50   ~ 0
-LED_5
-Text Label 3800 4250 0    50   ~ 0
-LED_6
-Text Label 3800 4350 0    50   ~ 0
-LED_7
 Text Label 3800 4450 0    50   ~ 0
+LED_5
+Text Label 3800 4350 0    50   ~ 0
+LED_6
+Text Label 3800 4250 0    50   ~ 0
+LED_7
+Text Label 3800 4150 0    50   ~ 0
 LED_8
 Wire Wire Line
 	3100 2650 3100 2575
@@ -239,12 +200,6 @@ Wire Wire Line
 	3800 4050 4100 4050
 Wire Wire Line
 	3800 3950 4100 3950
-Text Label 5050 6050 1    50   ~ 0
-LED_0
-Text Label 5150 6050 1    50   ~ 0
-LED_1
-Text Label 5250 6050 1    50   ~ 0
-LED_2
 $Comp
 L power:PWR_FLAG #FLG0101
 U 1 1 5BCC0D87
@@ -282,17 +237,13 @@ F 3 "" H 4050 1450 50  0001 C CNN
 	1    4050 1450
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7300 1300 7500 1300
-Wire Wire Line
-	7050 1400 7500 1400
 $Comp
 L MCU_Microchip_ATtiny:ATtiny261A-MU U101
 U 1 1 5C0B1B62
 P 3100 3750
 F 0 "U101" H 2459 3796 50  0000 R CNN
 F 1 "ATtiny261A-MU" H 2459 3705 50  0000 R CNN
-F 2 "Package_DFN_QFN:QFN-32-1EP_5x5mm_P0.5mm_EP3.8x3.8mm" H 3100 3750 50  0001 C CIN
+F 2 "Housings_DFN_QFN:QFN-32-1EP_5x5mm_Pitch0.5mm" H 3100 3750 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/doc8197.pdf" H 3100 3750 50  0001 C CNN
 	1    3100 3750
 	1    0    0    -1  
@@ -372,108 +323,6 @@ F 3 "" H 3300 5750 50  0001 C CNN
 	1    3300 5750
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+3V3 #PWR0111
-U 1 1 5C0EFBA3
-P 4850 6050
-F 0 "#PWR0111" H 4850 5900 50  0001 C CNN
-F 1 "+3V3" V 4850 6300 50  0000 C CNN
-F 2 "" H 4850 6050 50  0001 C CNN
-F 3 "" H 4850 6050 50  0001 C CNN
-	1    4850 6050
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector:Test_Point TP101
-U 1 1 5C0F11B2
-P 4750 6225
-F 0 "TP101" V 4750 7025 50  0000 R CNN
-F 1 "BATT_TP" V 4750 6800 50  0000 R CNN
-F 2 "Measurement_Points:Measurement_Point_Round-SMD-Pad_Big" H 4950 6225 50  0001 C CNN
-F 3 "~" H 4950 6225 50  0001 C CNN
-	1    4750 6225
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	4750 6225 4750 6050
-$Comp
-L Connector:Test_Point TP102
-U 1 1 5C0F1679
-P 4850 6225
-F 0 "TP102" V 4850 7025 50  0000 R CNN
-F 1 "3V3_TP" V 4850 6800 50  0000 R CNN
-F 2 "Measurement_Points:Measurement_Point_Round-SMD-Pad_Big" H 5050 6225 50  0001 C CNN
-F 3 "~" H 5050 6225 50  0001 C CNN
-	1    4850 6225
-	-1   0    0    1   
-$EndComp
-$Comp
-L Connector:Test_Point TP103
-U 1 1 5C0F16BF
-P 4950 6225
-F 0 "TP103" V 4950 7025 50  0000 R CNN
-F 1 "RESET_TP" V 4950 6800 50  0000 R CNN
-F 2 "Measurement_Points:Measurement_Point_Round-SMD-Pad_Big" H 5150 6225 50  0001 C CNN
-F 3 "~" H 5150 6225 50  0001 C CNN
-	1    4950 6225
-	-1   0    0    1   
-$EndComp
-$Comp
-L Connector:Test_Point TP104
-U 1 1 5C0F16EB
-P 5050 6225
-F 0 "TP104" V 5050 7025 50  0000 R CNN
-F 1 "LED_0_TP" V 5050 6800 50  0000 R CNN
-F 2 "Measurement_Points:Measurement_Point_Round-SMD-Pad_Big" H 5250 6225 50  0001 C CNN
-F 3 "~" H 5250 6225 50  0001 C CNN
-	1    5050 6225
-	-1   0    0    1   
-$EndComp
-$Comp
-L Connector:Test_Point TP105
-U 1 1 5C0F1719
-P 5150 6225
-F 0 "TP105" V 5150 7025 50  0000 R CNN
-F 1 "LED_1_TP" V 5150 6800 50  0000 R CNN
-F 2 "Measurement_Points:Measurement_Point_Round-SMD-Pad_Big" H 5350 6225 50  0001 C CNN
-F 3 "~" H 5350 6225 50  0001 C CNN
-	1    5150 6225
-	-1   0    0    1   
-$EndComp
-$Comp
-L Connector:Test_Point TP106
-U 1 1 5C0F1747
-P 5250 6225
-F 0 "TP106" V 5250 7025 50  0000 R CNN
-F 1 "LED_2_TP" V 5250 6800 50  0000 R CNN
-F 2 "Measurement_Points:Measurement_Point_Round-SMD-Pad_Big" H 5450 6225 50  0001 C CNN
-F 3 "~" H 5450 6225 50  0001 C CNN
-	1    5250 6225
-	-1   0    0    1   
-$EndComp
-$Comp
-L Connector:Test_Point TP107
-U 1 1 5C0F1773
-P 5350 6225
-F 0 "TP107" V 5350 7025 50  0000 R CNN
-F 1 "TILT_TP" V 5350 6800 50  0000 R CNN
-F 2 "Measurement_Points:Measurement_Point_Round-SMD-Pad_Big" H 5550 6225 50  0001 C CNN
-F 3 "~" H 5550 6225 50  0001 C CNN
-	1    5350 6225
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	4850 6225 4850 6050
-Wire Wire Line
-	4950 6225 4950 6050
-Wire Wire Line
-	5050 6225 5050 6050
-Wire Wire Line
-	5150 6225 5150 6050
-Wire Wire Line
-	5250 6225 5250 6050
-Wire Wire Line
-	5350 6225 5350 6050
 Wire Wire Line
 	3800 3250 4050 3250
 Wire Wire Line
@@ -484,8 +333,6 @@ Connection ~ 4050 3250
 Wire Wire Line
 	4050 3250 4175 3250
 Text Label 3800 3050 0    50   ~ 0
-TILT
-Text Label 5350 6050 1    50   ~ 0
 TILT
 $Comp
 L Switch:SW_SPST SW101
@@ -542,4 +389,62 @@ F 3 "" H 8400 4375 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	8250 4375 8400 4375
+$Comp
+L Device:R R103
+U 1 1 5C0ECCA8
+P 7250 1025
+F 0 "R103" H 7320 1071 50  0000 L CNN
+F 1 "10k" H 7320 980 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 7180 1025 50  0001 C CNN
+F 3 "~" H 7250 1025 50  0001 C CNN
+	1    7250 1025
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R102
+U 1 1 5C0ECD2E
+P 6900 1025
+F 0 "R102" H 6970 1071 50  0000 L CNN
+F 1 "10k" H 6970 980 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 6830 1025 50  0001 C CNN
+F 3 "~" H 6900 1025 50  0001 C CNN
+	1    6900 1025
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0109
+U 1 1 5C0ED0B8
+P 6900 875
+F 0 "#PWR0109" H 6900 725 50  0001 C CNN
+F 1 "+3V3" H 6915 1048 50  0000 C CNN
+F 2 "" H 6900 875 50  0001 C CNN
+F 3 "" H 6900 875 50  0001 C CNN
+	1    6900 875 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0137
+U 1 1 5C0ED0E1
+P 7250 875
+F 0 "#PWR0137" H 7250 725 50  0001 C CNN
+F 1 "+3V3" H 7265 1048 50  0000 C CNN
+F 2 "" H 7250 875 50  0001 C CNN
+F 3 "" H 7250 875 50  0001 C CNN
+	1    7250 875 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6900 1400 6900 1175
+Wire Wire Line
+	6900 1400 7500 1400
+Wire Wire Line
+	6900 1400 6825 1400
+Connection ~ 6900 1400
+Wire Wire Line
+	7250 1300 7250 1175
+Wire Wire Line
+	7250 1300 7500 1300
+Wire Wire Line
+	7250 1300 7175 1300
+Connection ~ 7250 1300
 $EndSCHEMATC
