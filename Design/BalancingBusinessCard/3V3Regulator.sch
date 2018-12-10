@@ -1,0 +1,174 @@
+EESchema Schematic File Version 4
+LIBS:BalancingBusinessCardLights-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 4 4
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Regulator_Switching:MCP1640DCH U402
+U 1 1 5C0ED17A
+P 2825 2175
+F 0 "U402" H 2825 2642 50  0000 C CNN
+F 1 "MCP1640DCH" H 2825 2551 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-6" H 2875 1925 50  0001 L CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20002234D.pdf" H 2575 2625 50  0001 C CNN
+	1    2825 2175
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C403
+U 1 1 5C0ED297
+P 2050 2125
+F 0 "C403" H 2165 2171 50  0000 L CNN
+F 1 "4.7uF" H 2165 2080 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 2088 1975 50  0001 C CNN
+F 3 "~" H 2050 2125 50  0001 C CNN
+	1    2050 2125
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:L L401
+U 1 1 5C0ED346
+P 2825 1550
+F 0 "L401" V 2647 1550 50  0000 C CNN
+F 1 "4.7uH" V 2738 1550 50  0000 C CNN
+F 2 "Inductors_SMD:L_0603" H 2825 1550 50  0001 C CNN
+F 3 "~" H 2825 1550 50  0001 C CNN
+	1    2825 1550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2425 1975 2350 1975
+Wire Wire Line
+	2425 2175 2350 2175
+Wire Wire Line
+	2350 2175 2350 1975
+Connection ~ 2350 1975
+Wire Wire Line
+	2350 1975 2050 1975
+$Comp
+L power:GND #PWR0115
+U 1 1 5C0ED540
+P 2050 2275
+F 0 "#PWR0115" H 2050 2025 50  0001 C CNN
+F 1 "GND" H 2055 2102 50  0000 C CNN
+F 2 "" H 2050 2275 50  0001 C CNN
+F 3 "" H 2050 2275 50  0001 C CNN
+	1    2050 2275
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0116
+U 1 1 5C0ED558
+P 2825 2475
+F 0 "#PWR0116" H 2825 2225 50  0001 C CNN
+F 1 "GND" H 2830 2302 50  0000 C CNN
+F 2 "" H 2825 2475 50  0001 C CNN
+F 3 "" H 2825 2475 50  0001 C CNN
+	1    2825 2475
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0126
+U 1 1 5C0ED5C1
+P 3525 2775
+F 0 "#PWR0126" H 3525 2525 50  0001 C CNN
+F 1 "GND" H 3530 2602 50  0000 C CNN
+F 2 "" H 3525 2775 50  0001 C CNN
+F 3 "" H 3525 2775 50  0001 C CNN
+	1    3525 2775
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2350 1975 2350 1550
+Wire Wire Line
+	2350 1550 2675 1550
+Wire Wire Line
+	2975 1550 3300 1550
+Wire Wire Line
+	3300 1550 3300 1975
+Wire Wire Line
+	3300 1975 3225 1975
+$Comp
+L Device:R R401
+U 1 1 5C0ED6C5
+P 3525 2225
+F 0 "R401" H 3595 2271 50  0000 L CNN
+F 1 "976k" H 3595 2180 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 3455 2225 50  0001 C CNN
+F 3 "~" H 3525 2225 50  0001 C CNN
+	1    3525 2225
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R402
+U 1 1 5C0ED701
+P 3525 2575
+F 0 "R402" H 3595 2621 50  0000 L CNN
+F 1 "562k" H 3595 2530 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 3455 2575 50  0001 C CNN
+F 3 "~" H 3525 2575 50  0001 C CNN
+	1    3525 2575
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3225 2075 3525 2075
+Wire Wire Line
+	3225 2275 3225 2400
+Wire Wire Line
+	3225 2400 3525 2400
+Wire Wire Line
+	3525 2400 3525 2375
+Wire Wire Line
+	3525 2400 3525 2425
+Connection ~ 3525 2400
+Wire Wire Line
+	3525 2775 3525 2725
+$Comp
+L Device:C C404
+U 1 1 5C0EDB53
+P 4000 2225
+F 0 "C404" H 4115 2271 50  0000 L CNN
+F 1 "10uF" H 4115 2180 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 4038 2075 50  0001 C CNN
+F 3 "~" H 4000 2225 50  0001 C CNN
+	1    4000 2225
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0135
+U 1 1 5C0EDC94
+P 4000 2425
+F 0 "#PWR0135" H 4000 2175 50  0001 C CNN
+F 1 "GND" H 4005 2252 50  0000 C CNN
+F 2 "" H 4000 2425 50  0001 C CNN
+F 3 "" H 4000 2425 50  0001 C CNN
+	1    4000 2425
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4000 2425 4000 2375
+Wire Wire Line
+	4000 2075 3525 2075
+Connection ~ 3525 2075
+Text HLabel 1975 1975 0    50   Input ~ 0
+VIN
+Text HLabel 4100 2075 2    50   Input ~ 0
+VOUT
+Wire Wire Line
+	4000 2075 4100 2075
+Connection ~ 4000 2075
+Wire Wire Line
+	1975 1975 2050 1975
+Connection ~ 2050 1975
+$EndSCHEMATC

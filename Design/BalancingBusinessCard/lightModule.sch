@@ -1,10 +1,10 @@
 EESchema Schematic File Version 4
-LIBS:BalancingBusinessCard-cache
+LIBS:BalancingBusinessCardLights-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 5
+Sheet 2 4
 Title ""
 Date ""
 Rev ""
@@ -25,7 +25,7 @@ F 3 "~" H 3900 2800 50  0001 C CNN
 	1    3900 2800
 	0    -1   -1   0   
 $EndComp
-Text HLabel 3900 2550 2    50   Input ~ 0
+Text HLabel 3900 2200 2    50   Input ~ 0
 LED_1
 $Comp
 L power:GND #PWR0117
@@ -53,7 +53,7 @@ F 3 "~" H 4250 2800 50  0001 C CNN
 	1    4250 2800
 	0    -1   -1   0   
 $EndComp
-Text HLabel 4250 2550 2    50   Input ~ 0
+Text HLabel 4250 2200 2    50   Input ~ 0
 LED_2
 $Comp
 L power:GND #PWR0118
@@ -81,7 +81,7 @@ F 3 "~" H 4600 2800 50  0001 C CNN
 	1    4600 2800
 	0    -1   -1   0   
 $EndComp
-Text HLabel 4600 2550 2    50   Input ~ 0
+Text HLabel 4600 2200 2    50   Input ~ 0
 LED_3
 $Comp
 L power:GND #PWR0119
@@ -109,7 +109,7 @@ F 3 "~" H 4950 2800 50  0001 C CNN
 	1    4950 2800
 	0    -1   -1   0   
 $EndComp
-Text HLabel 4950 2550 2    50   Input ~ 0
+Text HLabel 4950 2200 2    50   Input ~ 0
 LED_4
 $Comp
 L power:GND #PWR0120
@@ -137,7 +137,7 @@ F 3 "~" H 5300 2800 50  0001 C CNN
 	1    5300 2800
 	0    -1   -1   0   
 $EndComp
-Text HLabel 5300 2550 2    50   Input ~ 0
+Text HLabel 5300 2200 2    50   Input ~ 0
 LED_5
 $Comp
 L power:GND #PWR0121
@@ -165,7 +165,7 @@ F 3 "~" H 5650 2800 50  0001 C CNN
 	1    5650 2800
 	0    -1   -1   0   
 $EndComp
-Text HLabel 5650 2550 2    50   Input ~ 0
+Text HLabel 5650 2200 2    50   Input ~ 0
 LED_6
 $Comp
 L power:GND #PWR0122
@@ -193,7 +193,7 @@ F 3 "~" H 6000 2800 50  0001 C CNN
 	1    6000 2800
 	0    -1   -1   0   
 $EndComp
-Text HLabel 6000 2550 2    50   Input ~ 0
+Text HLabel 6000 2200 2    50   Input ~ 0
 LED_7
 $Comp
 L power:GND #PWR0123
@@ -221,7 +221,7 @@ F 3 "~" H 3550 2800 50  0001 C CNN
 	1    3550 2800
 	0    -1   -1   0   
 $EndComp
-Text HLabel 3550 2550 2    50   Input ~ 0
+Text HLabel 3550 2200 2    50   Input ~ 0
 LED_0
 $Comp
 L power:GND #PWR0124
@@ -249,7 +249,7 @@ F 3 "~" H 6350 2800 50  0001 C CNN
 	1    6350 2800
 	0    -1   -1   0   
 $EndComp
-Text HLabel 6350 2550 2    50   Input ~ 0
+Text HLabel 6350 2200 2    50   Input ~ 0
 LED_8
 $Comp
 L power:GND #PWR0125
@@ -266,4 +266,121 @@ Wire Wire Line
 	6350 2650 6350 2550
 Wire Wire Line
 	6350 2950 6350 3050
+$Comp
+L Device:R R201
+U 1 1 5C0EA341
+P 3550 2400
+F 0 "R201" H 3620 2446 50  0000 L CNN
+F 1 "150R" H 3620 2355 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 3480 2400 50  0001 C CNN
+F 3 "~" H 3550 2400 50  0001 C CNN
+	1    3550 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 2250 3550 2200
+$Comp
+L Device:R R202
+U 1 1 5C0EA8FF
+P 3900 2400
+F 0 "R202" H 3970 2446 50  0000 L CNN
+F 1 "150R" H 3970 2355 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 3830 2400 50  0001 C CNN
+F 3 "~" H 3900 2400 50  0001 C CNN
+	1    3900 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R203
+U 1 1 5C0EA93D
+P 4250 2400
+F 0 "R203" H 4320 2446 50  0000 L CNN
+F 1 "150R" H 4320 2355 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 4180 2400 50  0001 C CNN
+F 3 "~" H 4250 2400 50  0001 C CNN
+	1    4250 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R204
+U 1 1 5C0EA97D
+P 4600 2400
+F 0 "R204" H 4670 2446 50  0000 L CNN
+F 1 "150R" H 4670 2355 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 4530 2400 50  0001 C CNN
+F 3 "~" H 4600 2400 50  0001 C CNN
+	1    4600 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R205
+U 1 1 5C0EA9B5
+P 4950 2400
+F 0 "R205" H 5020 2446 50  0000 L CNN
+F 1 "150R" H 5020 2355 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 4880 2400 50  0001 C CNN
+F 3 "~" H 4950 2400 50  0001 C CNN
+	1    4950 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R206
+U 1 1 5C0EA9FD
+P 5300 2400
+F 0 "R206" H 5370 2446 50  0000 L CNN
+F 1 "150R" H 5370 2355 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 5230 2400 50  0001 C CNN
+F 3 "~" H 5300 2400 50  0001 C CNN
+	1    5300 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R207
+U 1 1 5C0EAA3F
+P 5650 2400
+F 0 "R207" H 5720 2446 50  0000 L CNN
+F 1 "150R" H 5720 2355 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 5580 2400 50  0001 C CNN
+F 3 "~" H 5650 2400 50  0001 C CNN
+	1    5650 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R208
+U 1 1 5C0EAA7D
+P 6000 2400
+F 0 "R208" H 6070 2446 50  0000 L CNN
+F 1 "150R" H 6070 2355 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 5930 2400 50  0001 C CNN
+F 3 "~" H 6000 2400 50  0001 C CNN
+	1    6000 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R209
+U 1 1 5C0EAAC7
+P 6350 2400
+F 0 "R209" H 6420 2446 50  0000 L CNN
+F 1 "150R" H 6420 2355 50  0000 L CNN
+F 2 "Resistors_SMD:R_0603" V 6280 2400 50  0001 C CNN
+F 3 "~" H 6350 2400 50  0001 C CNN
+	1    6350 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3900 2250 3900 2200
+Wire Wire Line
+	4250 2250 4250 2200
+Wire Wire Line
+	4600 2250 4600 2200
+Wire Wire Line
+	4950 2250 4950 2200
+Wire Wire Line
+	5300 2250 5300 2200
+Wire Wire Line
+	5650 2250 5650 2200
+Wire Wire Line
+	6000 2250 6000 2200
+Wire Wire Line
+	6350 2250 6350 2200
 $EndSCHEMATC

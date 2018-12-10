@@ -1,10 +1,10 @@
 EESchema Schematic File Version 4
-LIBS:BalancingBusinessCard-cache
+LIBS:BalancingBusinessCardLights-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 4 5
+Sheet 3 4
 Title ""
 Date ""
 Rev ""
@@ -14,18 +14,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L Custom:LIS3DHTR U401
-U 1 1 5BCBF7EE
-P 4250 2100
-F 0 "U401" H 5750 2593 60  0000 C CNN
-F 1 "LIS3DHTR" H 5750 2487 60  0000 C CNN
-F 2 "CustomFootprints:LIS3DHTR" H 5750 2340 60  0001 C CNN
-F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/3c/ae/50/85/d6/b1/46/fe/CD00274221.pdf/files/CD00274221.pdf/jcr:content/translations/en.CD00274221.pdf" H 5750 2381 60  0000 C CNN
-F 4 "497-10613-1-ND" H 4250 2100 50  0001 C CNN "Digikey"
-	1    4250 2100
-	1    0    0    -1  
-$EndComp
 Text HLabel 4250 2600 0    50   Input ~ 0
 SDA
 Text HLabel 4250 2400 0    50   Input ~ 0
@@ -40,17 +28,6 @@ F 2 "" H 4250 2500 50  0001 C CNN
 F 3 "" H 4250 2500 50  0001 C CNN
 	1    4250 2500
 	0    1    1    0   
-$EndComp
-$Comp
-L power:+1V8 #PWR0128
-U 1 1 5BCBFC28
-P 4250 2800
-F 0 "#PWR0128" H 4250 2650 50  0001 C CNN
-F 1 "+1V8" V 4265 2928 50  0000 L CNN
-F 2 "" H 4250 2800 50  0001 C CNN
-F 3 "" H 4250 2800 50  0001 C CNN
-	1    4250 2800
-	0    -1   -1   0   
 $EndComp
 $Comp
 L power:GND #PWR0129
@@ -115,9 +92,6 @@ $EndComp
 Wire Wire Line
 	8100 2300 7800 2300
 Wire Wire Line
-	7800 2300 7250 2300
-Connection ~ 7800 2300
-Wire Wire Line
 	7800 2600 7950 2600
 $Comp
 L power:GND #PWR0132
@@ -133,27 +107,53 @@ $EndComp
 Connection ~ 7950 2600
 Wire Wire Line
 	7950 2600 8100 2600
+Wire Wire Line
+	7250 2300 7800 2300
+Connection ~ 7800 2300
 $Comp
-L power:+1V8 #PWR0133
-U 1 1 5BCCACF2
-P 4250 2100
-F 0 "#PWR0133" H 4250 1950 50  0001 C CNN
-F 1 "+1V8" H 4265 2273 50  0000 C CNN
-F 2 "" H 4250 2100 50  0001 C CNN
-F 3 "" H 4250 2100 50  0001 C CNN
-	1    4250 2100
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+1V8 #PWR0137
-U 1 1 5BCCAD0A
+L power:+3V3 #PWR?
+U 1 1 5C0FED29
 P 8100 2300
-F 0 "#PWR0137" H 8100 2150 50  0001 C CNN
-F 1 "+1V8" H 8115 2473 50  0000 C CNN
+F 0 "#PWR?" H 8100 2150 50  0001 C CNN
+F 1 "+3V3" H 8115 2473 50  0000 C CNN
 F 2 "" H 8100 2300 50  0001 C CNN
 F 3 "" H 8100 2300 50  0001 C CNN
 	1    8100 2300
 	1    0    0    -1  
 $EndComp
 Connection ~ 8100 2300
+$Comp
+L Custom:LIS3DHTR U401
+U 1 1 5BCBF7EE
+P 4250 2100
+F 0 "U401" H 5750 2593 60  0000 C CNN
+F 1 "LIS3DHTR" H 5750 2487 60  0000 C CNN
+F 2 "CustomFootprints:LIS3DHTR" H 5750 2340 60  0001 C CNN
+F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/3c/ae/50/85/d6/b1/46/fe/CD00274221.pdf/files/CD00274221.pdf/jcr:content/translations/en.CD00274221.pdf" H 5750 2381 60  0000 C CNN
+F 4 "497-10613-1-ND" H 4250 2100 50  0001 C CNN "Digikey"
+	1    4250 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5C0FED7A
+P 4250 2100
+F 0 "#PWR?" H 4250 1950 50  0001 C CNN
+F 1 "+3V3" H 4265 2273 50  0000 C CNN
+F 2 "" H 4250 2100 50  0001 C CNN
+F 3 "" H 4250 2100 50  0001 C CNN
+	1    4250 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5C0FEDA2
+P 4250 2800
+F 0 "#PWR?" H 4250 2650 50  0001 C CNN
+F 1 "+3V3" V 4265 2928 50  0000 L CNN
+F 2 "" H 4250 2800 50  0001 C CNN
+F 3 "" H 4250 2800 50  0001 C CNN
+	1    4250 2800
+	0    -1   -1   0   
+$EndComp
 $EndSCHEMATC
