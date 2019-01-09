@@ -150,7 +150,7 @@ Text Label 7500 3200 2    50   ~ 0
 LED_7
 Text Label 7500 3300 2    50   ~ 0
 LED_8
-Text Label 4175 3250 0    50   ~ 0
+Text Label 3800 3250 0    50   ~ 0
 LED_0
 Text Label 3800 3350 0    50   ~ 0
 LED_1
@@ -264,8 +264,6 @@ Wire Wire Line
 Connection ~ 3100 4900
 Wire Wire Line
 	3100 4900 3100 4950
-Text Label 4175 3150 0    50   ~ 0
-DEBUG
 $Sheet
 S 1050 1350 1350 325 
 U 5C0D2666
@@ -323,15 +321,6 @@ F 3 "" H 3300 5750 50  0001 C CNN
 	1    3300 5750
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3800 3250 4050 3250
-Wire Wire Line
-	4050 3250 4050 3150
-Wire Wire Line
-	4050 3150 4175 3150
-Connection ~ 4050 3250
-Wire Wire Line
-	4050 3250 4175 3250
 Text Label 3800 3050 0    50   ~ 0
 TILT
 $Comp

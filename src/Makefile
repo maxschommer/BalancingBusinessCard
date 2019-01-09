@@ -3,7 +3,7 @@
 
 DEVICE      = attiny261
 CLOCK      = 1000000
-PROGRAMMER = -c usbtiny 
+PROGRAMMER = -c avrisp2 
 OBJECTS    = main.o
 # for ATTiny85
 # see http://www.engbedded.com/fusecalc/
@@ -11,7 +11,7 @@ FUSES       = -U lfuse:w:0x62:m -U hfuse:w:0xdf:m -U efuse:w:0xff:m
 
 # Tune the lines below only if you know what you are doing:
 AVRDUDE = avrdude $(PROGRAMMER) -p $(DEVICE)
-COMPILE = avr-gcc -Wall -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE)
+COMPILE = avr-gcc -Wall -O0 -DF_CPU=$(CLOCK) -mmcu=$(DEVICE)
 
 # symbolic targets:
 all:	main.hex
