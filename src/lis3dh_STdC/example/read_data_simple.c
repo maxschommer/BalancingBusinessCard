@@ -128,7 +128,7 @@ void example_main_lis3dh(void)
 
   dev_ctx.write_reg = platform_write;
   dev_ctx.read_reg = platform_read;
-  dev_ctx.handle = &hi2c1;  
+  dev_ctx.handle = 0; 
 
   /*
    * Initialize platform specific hardware
@@ -234,6 +234,7 @@ static int32_t platform_write(void *handle, uint8_t reg, uint8_t *bufp,
   {
     /* Write multiple command */
     reg |= 0x80;
+	
     HAL_I2C_Mem_Write(handle, LIS3DH_I2C_ADD_L, reg,
                       I2C_MEMADD_SIZE_8BIT, bufp, len, 1000);
   }

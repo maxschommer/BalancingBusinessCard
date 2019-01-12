@@ -4,7 +4,17 @@
 DEVICE      = attiny261
 CLOCK      = 1000000
 PROGRAMMER = -c avrisp2 
-OBJECTS    = main.o
+OBJECTS    = main.o lis3dh_reg.o USI_TWI_Master.o TinyWireM.o
+
+main.o : main.cpp alphabet.h TinyWireM.h lis3dh_reg.h
+
+lis3dh_reg.o : lis3dh_reg.c USI_TWI_Master.h
+
+USI_TWI_Master.o : USI_TWI_Master.cpp 
+
+TinyWireM.o : TinyWireM.cpp USI_TWI_Master.h TinyWireM.h
+
+
 # for ATTiny85
 # see http://www.engbedded.com/fusecalc/
 FUSES       = -U lfuse:w:0x62:m -U hfuse:w:0xdf:m -U efuse:w:0xff:m 
