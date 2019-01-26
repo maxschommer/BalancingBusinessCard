@@ -20,6 +20,7 @@ extern "C" {
   //#include <USI_TWI_Master/USI_TWI_Master.h>
 }
 
+typedef __SIZE_TYPE__ size_t;
 
 #include "TinyWireM.h"
 

@@ -24,7 +24,6 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include <avr/io.h>
-#include "USI_TWI_Master.h"
 
 //********** Defines **********//
 #define __AVR_ATTiny861__   // Set micro controller to use. See device dependant defines 

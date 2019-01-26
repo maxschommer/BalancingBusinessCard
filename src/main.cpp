@@ -14,12 +14,12 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include "TinyWireM.h"
-#include "TinyWireM.cpp"
+// #include "TinyWireM.cpp"
 #include "USI_TWI_Master.h"
-#include "USI_TWI_Master.cpp"
+// #include "USI_TWI_Master.cpp"
 
-#include "lis3dh_reg.h"
-#include "lis3dh_reg.c"
+// #include "lis3dh_reg.h"
+// #include "lis3dh_reg.c"
 
 
 #define LIS3DHTR_ADDR   0x33              // 7 bit I2C address for LIS3DHTR accelerometer sensor
@@ -73,8 +73,8 @@ static int32_t platform_read(void *handle, uint8_t reg, uint8_t *bufp,
 static void platform_init(void);
 
 /* Private variables ---------------------------------------------------------*/
-static axis3bit16_t data_raw_acceleration;
-static axis1bit16_t data_raw_temperature;
+// static axis3bit16_t data_raw_acceleration;
+// static axis1bit16_t data_raw_temperature;
 static float acceleration_mg[3];
 static float temperature_degC;
 static uint8_t whoamI;

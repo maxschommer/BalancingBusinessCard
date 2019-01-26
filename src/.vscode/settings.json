@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "cinttypes": "cpp",
+        "cstdint": "cpp",
+        "cstddef": "cpp",
+        "lis3dh_reg.h": "c"
+    }
+}
