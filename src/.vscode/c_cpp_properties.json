@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "ATTINY861",
             "includePath": [
                 "${workspaceFolder}/**"
             ],

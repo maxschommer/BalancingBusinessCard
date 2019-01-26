@@ -56,6 +56,7 @@ void USI_TWI_Master_Initialise( void )
               (0<<USITC);
   USISR   =   (1<<USISIF)|(1<<USIOIF)|(1<<USIPF)|(1<<USIDC)|      // Clear flags,
               (0x0<<USICNT0);                                     // and reset counter.
+  USIPP   = 0b1; // Change USI peripheral to use Port A
 }
 
 /*---------------------------------------------------------------

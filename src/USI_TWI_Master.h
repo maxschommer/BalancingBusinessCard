@@ -112,8 +112,8 @@
 	#define DDR_USI             DDRA
 	#define PORT_USI            PORTA
 	#define PIN_USI             PINA
-	#define PORT_USI_SDA        PA0
-	#define PORT_USI_SCL        PA2
+	#define PORT_USI_SDA        PORTA0
+	#define PORT_USI_SCL        PORTA2
 	#define PIN_USI_SDA         PINA0
 	#define PIN_USI_SCL         PINA2
 #endif
