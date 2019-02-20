@@ -29,7 +29,7 @@ void Init_ACC()
 
 void ShowLine(uint16_t line)
 {
-	// PORTA = (line & 0b000011111) << 3; // LED0, LED1, LED2, LED3, LED4
+	PORTA = (PORTA & (~(0b000011111<<3))) | (line & 0b000011111) << 3; // LED0, LED1, LED2, LED3, LED4
 	PORTB = ((line & 0b000100000) << 1);  // LED5
 	PORTB |= ((line & 0b001000000) >> 1); // LED6
 	PORTB |= ((line & 0b010000000) >> 3); // LED7
@@ -65,7 +65,8 @@ int main()
 	USICR = 1 << USIWM1; // Enable Two-Wire mode of USI register
 
 	DDRB = 0b01111010; // Set LEDs on port B as output
-	// DDRA = 0b11111000;                    // Set LEDs on port A as output
+	DDRA = 0b11111000;                    // Set LEDs on port A as output
+	TinyWireM.begin(); // initialize I2C lib
 
 	// Parameters
 	char message[] = "MAX";				 // Message to display
@@ -86,8 +87,6 @@ int main()
 	bool countStarted = false;		 // State of switch counter, 1 if started and 0 if not
 	uint32_t switchPreviousTime = 0; // Time of triggering switch
 
-	TinyWireM.begin(); // initialize I2C lib
-
 	uint16_t data_display = 0;
 
 	// Generate Flash Pattern
@@ -99,9 +98,7 @@ int main()
 	while (1)
 	{
 		data_display = test_i2c();
-		ShowLine(data_display << 1); // Show high bits
-		_delay_ms(500);
-		ShowLine(data_display << 5); // Show low bits
+		ShowLine(data_display); // Show high bits
 		_delay_ms(500);
 
 		ShowLine(0b100000000);
