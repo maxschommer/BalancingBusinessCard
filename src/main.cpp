@@ -9,15 +9,14 @@
 #include <avr/io.h>
 #include <stdio.h>
 #include <math.h>
-#include "alphabet.h"
 #include <util/delay.h>
 #include <avr/interrupt.h>
+
 #include "TinyWireM.h"
 #include "USI_TWI_Master.h"
 
-#define LIS3DHTR_ADDR 0b0011000 // 7 bit I2C address for LIS3DHTR accelerometer sensor
-// #define LIS3DHTR_ADDR 0b0011001 // 7 bit I2C address for LIS3DHTR accelerometer sensor (last bit high)
-// #define LIS3DHTR_ADDR 0x28 // Bosch IMU
+#include "alphabet.h"
+#include "accelerometer_utils.h"
 
 void Init_ACC()
 { // Setup the LIS3DHTR
@@ -37,37 +36,10 @@ void ShowLine(uint16_t line)
 	PORTB |= ((line & 0b100000000) >> 5); // LED8
 }
 
-int lis3dhReadInt(unsigned char address)
-{
-	unsigned char msb, lsb;
-	TinyWireM.beginTransmission(LIS3DHTR_ADDR);
-	TinyWireM.send(address);
-	TinyWireM.endTransmission();
-	TinyWireM.requestFrom(LIS3DHTR_ADDR, 2);
-	while (TinyWireM.available() < 2)
-		;
-	msb = TinyWireM.receive();
-	lsb = TinyWireM.receive();
-	return (int)msb << 8 | lsb;
-}
-
 static int32_t modifyPointer(uint8_t *bufp)
 {
 	bufp[0] = 0b10101010;
 }
-
-/* Private functions ---------------------------------------------------------*/
-/*
- *   WARNING:
- *   Functions declare in this section are defined at the end of this file
- *   and are strictly related to the hardware platform used.
- *
- */
-static int32_t platform_write(void *handle, uint8_t reg, uint8_t *bufp,
-							  uint16_t len);
-static int32_t platform_read(void *handle, uint8_t reg, uint8_t *bufp,
-							 uint16_t len);
-static void platform_init(void);
 
 /* Private variables ---------------------------------------------------------*/
 static float acceleration_mg[3];
@@ -77,21 +49,7 @@ static uint8_t tx_buffer[1000];
 
 uint8_t test_i2c()
 {
-	// modifyPointer(&xL);
-	TinyWireM.beginTransmission(LIS3DHTR_ADDR);
-	TinyWireM.send(0x0f);		 // read ctrl_reg_0
-								 //
-	TinyWireM.endTransmission(); // Send 1 byte to the slave
-	// TinyWireM.endTransmission(); // Send 1 byte to the slave
-	// _delay_ms(0.1);
-	TinyWireM.requestFrom(LIS3DHTR_ADDR,1); // Request 1 byte from slave
-	uint8_t xL = 0xff;
-	return TinyWireM.receive();
-
-	//if(xL ==  0)
-	//{
-	//PORTA = PORTA | 1<<PA3;
-	//}
+	return lis3dhReadByte(0x0f);
 }
 
 int main()
@@ -219,54 +177,4 @@ int main()
 			}
 		}
 	}
-}
-
-/*
- * @brief  Write generic device register (platform dependent)
- *
- * @param  handle    customizable argument. In this examples is used in
- *                   order to select the correct sensor bus handler.
- * @param  reg       register to write
- * @param  bufp      pointer to data to write in register reg
- * @param  len       number of consecutive register to write
- *
- */
-static int32_t platform_write(void *handle, uint8_t reg, uint8_t *bufp,
-							  uint16_t len)
-{
-	TinyWireM.beginTransmission(LIS3DHTR_ADDR);
-	TinyWireM.send(reg); // Access Register
-	TinyWireM.write(bufp, len);
-	TinyWireM.endTransmission(LIS3DHTR_ADDR);
-
-	return 0;
-}
-
-/*
- * @brief  Read generic device register (platform dependent)
- *
- * @param  handle    customizable argument. In this examples is used in
- *                   order to select the correct sensor bus handler.
- * @param  reg       register to read
- * @param  bufp      pointer to buffer that store the data read
- * @param  len       number of consecutive register to read
- *
- */
-static int32_t platform_read(void *handle, uint8_t reg, uint8_t *bufp,
-							 uint16_t len)
-{
-	TinyWireM.beginTransmission(LIS3DHTR_ADDR);
-	TinyWireM.write(reg); // Register to start at
-	TinyWireM.endTransmission(LIS3DHTR_ADDR);
-
-	_delay_ms(1);
-	TinyWireM.requestFrom(LIS3DHTR_ADDR, len); // Request len bytes from slave
-
-	uint8_t inc = 0; // Counter for writing to bufp
-	while (TinyWireM.available())
-	{
-		bufp[inc] = TinyWireM.read();
-		inc++;
-	}
-	return 0;
 }
