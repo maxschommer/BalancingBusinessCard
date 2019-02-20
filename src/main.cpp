@@ -4,7 +4,7 @@
  * Created: 11/3/2018 4:36:13 PM
  * Author : mschommer
  */
-// #define F_CPU 2000000UL  // 2 MHz for delay
+#define F_CPU 2000000UL  // 2 MHz for delay
 
 #include <avr/io.h>
 #include <stdio.h>
@@ -59,8 +59,8 @@ int main()
 
 	// Configuring ATTiny
 
-	//CLKPR = 1<<CLKPCE;
-	//CLKPR = 1<<CLKPS1;                    // Set clock division to 4
+	CLKPR = 1<<CLKPCE;
+	CLKPR = 1<<CLKPS1;                    // Set clock division to 4
 
 	TCCR0B = 1 << CS02; // Divide clock by 256
 
