@@ -4,11 +4,9 @@
 DEVICE     = attiny861
 CLOCK      = 1000000
 PROGRAMMER = -c avrisp2 
-OBJECTS    = main.o TinyWireM.o USI_TWI_Master.o #lis3dh_reg.o
+OBJECTS    = main.o TinyWireM.o USI_TWI_Master.o
 
-main.o : main.cpp alphabet.h TinyWireM.h lis3dh_reg.h
-
-# lis3dh_reg.o : lis3dh_reg.c USI_TWI_Master.h
+main.o : main.cpp alphabet.h TinyWireM.h
 
 USI_TWI_Master.o : USI_TWI_Master.cpp
 

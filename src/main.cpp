@@ -9,7 +9,6 @@
 #include <avr/io.h>
 #include <stdio.h>
 #include <math.h>
-// #include <util/twi.h>
 #include "alphabet.h"
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -99,7 +98,7 @@ int main()
 {
 
 	// Configuring ATTiny
-	// DDRA=0xff;                            // Configure PORTA as output
+
 	//CLKPR = 1<<CLKPCE;
 	//CLKPR = 1<<CLKPS1;                    // Set clock division to 4
 
@@ -129,14 +128,7 @@ int main()
 	bool countStarted = false;		 // State of switch counter, 1 if started and 0 if not
 	uint32_t switchPreviousTime = 0; // Time of triggering switch
 
-	//
 	TinyWireM.begin(); // initialize I2C lib
-	//
-
-	int xL;
-
-	// xL = lis3dhReadInt(0x1E);
-	// dev_ctx.read_reg(0, 0x0F, &xL, 1);
 
 	uint16_t data_display = 0;
 
@@ -160,53 +152,6 @@ int main()
 
 	while (1)
 	{
-		////////////////////////////////////////////////// BEGIN TEST
-		//lis3dh_reg_t reg;
-		//
-		///*
-		//* Read output only if new value available
-		//*/
-		//lis3dh_xl_data_ready_get(&dev_ctx, &reg.byte);
-		//if (reg.byte)
-		//{
-		///* Read accelerometer data */
-		//memset(data_raw_acceleration.u8bit, 0x00, 3*sizeof(int16_t));
-		//lis3dh_acceleration_raw_get(&dev_ctx, data_raw_acceleration.u8bit);
-		//acceleration_mg[0] =
-		//lis3dh_from_fs2_hr_to_mg(data_raw_acceleration.i16bit[0]);
-		//acceleration_mg[1] =
-		//lis3dh_from_fs2_hr_to_mg(data_raw_acceleration.i16bit[1]);
-		//acceleration_mg[2] =
-		//lis3dh_from_fs2_hr_to_mg(data_raw_acceleration.i16bit[2]);
-		//PORTA = PORTA | 1<<PA3;
-		//}
-		//else
-		//{
-		//PORTA = PORTA | 1<<PA4;
-		//}
-		//if(byteCount > 7){
-		//continue;
-		//}
-		//
-		//if ((xL & 1) == 1)
-		//{
-		//
-		//PORTA = PORTA | 1<<PA4;
-		//_delay_ms(10);
-		//PORTA = PORTA & ~(1<<PA4);
-		//_delay_ms(1000);
-		//}
-		//else
-		//{
-		//PORTA = PORTA | 1<<PA3;
-		//_delay_ms(10);
-		//PORTA = PORTA & ~(1<<PA3);
-		//_delay_ms(1000);
-		//}
-		//byteCount ++;
-		//xL = xL>>1;
-		////////////////////////////////////////////////// END TEST
-
 		// Calculate how many ticks each line should last
 		timeToWait = swingTime / (2 * buffer + flashPattern.length);
 
