@@ -17,8 +17,8 @@
 #include "USI_TWI_Master.h"
 
 // #define LIS3DHTR_ADDR 0b0011000 // 7 bit I2C address for LIS3DHTR accelerometer sensor
-#define LIS3DHTR_ADDR 0x28
-// #define LIS3DHTR_ADDR 0x00
+// #define LIS3DHTR_ADDR 0b0011001 // 7 bit I2C address for LIS3DHTR accelerometer sensor (last bit high)
+#define LIS3DHTR_ADDR 0x28 // Bosch IMU
 
 void Init_ACC()
 { // Setup the LIS3DHTR
@@ -31,7 +31,7 @@ void Init_ACC()
 
 void ShowLine(uint16_t line)
 {
-	// PORTA = (line & 0b000011111) << 3; // LED0, LED1, LED2, LED3, LED4
+	PORTA = (line & 0b000011111) << 3; // LED0, LED1, LED2, LED3, LED4
 	PORTB = ((line & 0b000100000) << 1);  // LED5
 	PORTB |= ((line & 0b001000000) >> 1); // LED6
 	PORTB |= ((line & 0b010000000) >> 3); // LED7
@@ -108,7 +108,7 @@ int main()
 	USICR = 1 << USIWM1; // Enable Two-Wire mode of USI register
 
 	DDRB = 0b01111010; // Set LEDs on port B as output
-	// DDRA = 0b11111000;                    // Set LEDs on port A as output
+	DDRA = 0b11111000;                    // Set LEDs on port A as output
 
 	// Parameters
 	char message[] = "MAX";				 // Message to display
@@ -149,9 +149,7 @@ int main()
 	while (1)
 	{
 		data_display = test_i2c();
-		ShowLine(data_display << 1); // Show high bits
-		_delay_ms(500);
-		ShowLine(data_display << 5); // Show low bits
+		ShowLine(data_display); // Show high bits
 		_delay_ms(500);
 		ShowLine(0b100000000);
 		_delay_ms(100);
