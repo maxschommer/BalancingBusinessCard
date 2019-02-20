@@ -20,6 +20,8 @@
 
 void Init_ACC()
 { // Setup the LIS3DHTR
+	lis3dhWriteByte(LIS3DH_CTRL_REG1, 0b10010111); // 1.344 kHz , No Low-power mode, all axes enabled
+	return;
 	TinyWireM.beginTransmission(LIS3DHTR_ADDR);
 	TinyWireM.send(0xAC);		// Access Command Register
 	TinyWireM.send(0b00000001); // Using one-shot mode for battery savings
@@ -49,7 +51,7 @@ static uint8_t tx_buffer[1000];
 
 uint8_t test_i2c()
 {
-	return lis3dhReadByte(0x0f);
+	return lis3dhReadByte(LIS3DH_OUT_X_H);
 }
 
 int main()
@@ -67,6 +69,8 @@ int main()
 	DDRB = 0b01111010; // Set LEDs on port B as output
 	DDRA = 0b11111000;                    // Set LEDs on port A as output
 	TinyWireM.begin(); // initialize I2C lib
+
+	Init_ACC();
 
 	// Parameters
 	char message[] = "MAX";				 // Message to display
