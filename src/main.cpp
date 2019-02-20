@@ -149,8 +149,11 @@ int main()
 	while (1)
 	{
 		data_display = test_i2c();
-		ShowLine(data_display); // Show high bits
-		_delay_ms(10);
+		ShowLine(data_display << 1); // Show high bits
+		_delay_ms(500);
+		ShowLine(data_display << 5); // Show low bits
+		_delay_ms(500);
+
 		ShowLine(0b100000000);
 		_delay_ms(10);
 	}
