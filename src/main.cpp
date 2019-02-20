@@ -16,7 +16,9 @@
 #include "TinyWireM.h"
 #include "USI_TWI_Master.h"
 
-#define LIS3DHTR_ADDR 0x00 // 7 bit I2C address for LIS3DHTR accelerometer sensor
+// #define LIS3DHTR_ADDR 0b0011000 // 7 bit I2C address for LIS3DHTR accelerometer sensor
+#define LIS3DHTR_ADDR 0x28
+// #define LIS3DHTR_ADDR 0x00
 
 void Init_ACC()
 { // Setup the LIS3DHTR
@@ -78,13 +80,14 @@ uint8_t test_i2c()
 {
 	// modifyPointer(&xL);
 	TinyWireM.beginTransmission(LIS3DHTR_ADDR);
-	TinyWireM.send(0x07);		 // read ctrl_reg_0
+	TinyWireM.send(0x01);		 // read ctrl_reg_0
 								 //
-	return TinyWireM.endTransmission(); // Send 1 byte to the slave
-	// return USIPP;
+	// return TinyWireM.endTransmission(); // Send 1 byte to the slave
+	TinyWireM.endTransmission(); // Send 1 byte to the slave
 	// _delay_ms(0.1);
-	// TinyWireM.requestFrom(LIS3DHTR_ADDR,1); // Request 1 byte from slave
-	// xL = TinyWireM.read();          // get the temperature
+	TinyWireM.requestFrom(LIS3DHTR_ADDR,1); // Request 1 byte from slave
+	uint8_t xL = 0xff;
+	return TinyWireM.receive();
 
 	//if(xL ==  0)
 	//{
