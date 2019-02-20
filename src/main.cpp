@@ -16,7 +16,7 @@
 #include "TinyWireM.h"
 #include "USI_TWI_Master.h"
 
-#define LIS3DHTR_ADDR 0x33 // 7 bit I2C address for LIS3DHTR accelerometer sensor
+#define LIS3DHTR_ADDR 0x00 // 7 bit I2C address for LIS3DHTR accelerometer sensor
 
 void Init_ACC()
 { // Setup the LIS3DHTR
