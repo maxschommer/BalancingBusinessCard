@@ -14,11 +14,9 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include "TinyWireM.h"
-#include "USI_TWI_Master.h"
+#include "lis3dh_reg.h"
 
 #define LIS3DHTR_ADDR 0b0011000 // 7 bit I2C address for LIS3DHTR accelerometer sensor
-// #define LIS3DHTR_ADDR 0b0011001 // 7 bit I2C address for LIS3DHTR accelerometer sensor (last bit high)
-// #define LIS3DHTR_ADDR 0x28 // Bosch IMU
 
 void Init_ACC()
 { // Setup the LIS3DHTR
@@ -78,6 +76,16 @@ static uint8_t tx_buffer[1000];
 
 uint8_t test_i2c()
 {
+
+	lis3dh_ctx_t dev_ctx;
+
+	dev_ctx.write_reg = platform_write;
+	dev_ctx.read_reg = platform_read;
+	dev_ctx.handle = 0; 
+
+	uint8_t id;
+	lis3dh_device_id_get(&dev_ctx, &id);
+	return id;
 	// modifyPointer(&xL);
 	TinyWireM.beginTransmission(LIS3DHTR_ADDR);
 	TinyWireM.send(0x0f);		 // read ctrl_reg_0
@@ -314,7 +322,6 @@ static int32_t platform_read(void *handle, uint8_t reg, uint8_t *bufp,
 	TinyWireM.write(reg); // Register to start at
 	TinyWireM.endTransmission(LIS3DHTR_ADDR);
 
-	_delay_ms(1);
 	TinyWireM.requestFrom(LIS3DHTR_ADDR, len); // Request len bytes from slave
 
 	uint8_t inc = 0; // Counter for writing to bufp

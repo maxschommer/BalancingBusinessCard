@@ -4,11 +4,11 @@
 DEVICE     = attiny861
 CLOCK      = 1000000
 PROGRAMMER = -c avrisp2 
-OBJECTS    = main.o TinyWireM.o USI_TWI_Master.o #lis3dh_reg.o
+OBJECTS    = main.o TinyWireM.o USI_TWI_Master.o lis3dh_reg.o
 
 main.o : main.cpp alphabet.h TinyWireM.h lis3dh_reg.h
 
-# lis3dh_reg.o : lis3dh_reg.c USI_TWI_Master.h
+lis3dh_reg.o : lis3dh_reg.c USI_TWI_Master.h
 
 USI_TWI_Master.o : USI_TWI_Master.cpp
 
@@ -25,6 +25,9 @@ COMPILE = avr-gcc -Wall -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE)
 
 # symbolic targets:
 all:	main.hex
+
+.c.o:
+	$(COMPILE) -c $< -o $@
 
 .cpp.o:
 	$(COMPILE) -c $< -o $@

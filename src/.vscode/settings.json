@@ -3,6 +3,7 @@
         "cinttypes": "cpp",
         "cstdint": "cpp",
         "cstddef": "cpp",
-        "lis3dh_reg.h": "c"
+        "lis3dh_reg.h": "c",
+        "usi_twi_master.h": "c"
     }
 }

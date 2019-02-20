@@ -46,7 +46,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
 #include <math.h>
-#include "USI_TWI_Master.h"
+// #include "USI_TWI_Master.h"
 
 
 /** @addtogroup LIS3DH
