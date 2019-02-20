@@ -80,10 +80,10 @@ uint8_t test_i2c()
 {
 	// modifyPointer(&xL);
 	TinyWireM.beginTransmission(LIS3DHTR_ADDR);
-	TinyWireM.send(0x02);		 // read ctrl_reg_0
+	TinyWireM.send(0x0f);		 // read ctrl_reg_0
 								 //
-	return TinyWireM.endTransmission(); // Send 1 byte to the slave
 	TinyWireM.endTransmission(); // Send 1 byte to the slave
+	// TinyWireM.endTransmission(); // Send 1 byte to the slave
 	// _delay_ms(0.1);
 	TinyWireM.requestFrom(LIS3DHTR_ADDR,1); // Request 1 byte from slave
 	uint8_t xL = 0xff;
