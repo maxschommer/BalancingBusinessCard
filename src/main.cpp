@@ -103,7 +103,7 @@ int main()
 	Init_ACC();
 
 	// Message Display Parameters
-	char message[] = "OLIN";		   // Message to display
+	char message[] = "OLIN";			   // Message to display
 	int kerning = 2;					   // Space between letters, in bars
 	const float before_message_frac = 0.2; // Target fraction of cycle waiting before display
 
@@ -112,26 +112,30 @@ int main()
 	long double timeToWait;
 
 	// Variable Initializations
-	uint32_t lastEdgeTime = current_time();  // Time that the last acceleration peak was detected
-	uint32_t estimated_period = 10000;		 // In ticks, time to sweep one dir
-	uint32_t estimated_other_period = 10000; // In ticks, time to sweep the direction we aren't going
-	int8_t dir = 1;							 // 1 if moving right, -1 if moving left
+	uint32_t lastLeftEdgeTime = current_time(); // Time that the last acceleration peak was detected
+	uint32_t estimated_period = 10000;			// In ticks, time to sweep right
+	uint32_t message_start_time = 0;
+	uint32_t message_end_time = 1;
+	uint32_t message_duration = 1;
+	int8_t dir = 1; // 1 if moving right, -1 if moving left
 
 	while (1)
 	{
 		// Detect the left edge
 		uint32_t t = current_time();
 
-		// Calculate current position
-		float frac_time = float(t - lastEdgeTime) / estimated_period;
+		// // Calculate current position
+		// float frac_time = float(t - lastEdgeTime) / estimated_period;
 
-		float frac_space = frac_time;
-		// if (frac_time > 0 && frac_time < 1.0)
-		// {
-		// 	frac_space = (-cos(frac_time * M_PI) + 1) / 2;
-		// }
+		// float frac_space = frac_time;
+		// // if (frac_time > 0 && frac_time < 1.0)
+		// // {
+		// // 	frac_space = (-cos(frac_time * M_PI) + 1) / 2;
+		// // }
 
-		float frac_message = (frac_space - before_message_frac) / (1 - 2 * before_message_frac);
+		float frac_message = (t - message_start_time) / float(message_end_time - message_start_time);
+
+		// (frac_space - before_message_frac) / (1 - 2 * before_message_frac);
 
 		// Display
 		if (frac_message >= 0.0 && frac_message < 1.0)
@@ -152,23 +156,40 @@ int main()
 			// Check for an edge, update variables if found
 			int8_t edge = detect_edge(t);
 
-			if (edge != 0)
+			if (edge == -1)
 			{
-				estimated_period = t - lastEdgeTime;
-				lastEdgeTime = t;//current_time();
+				// Detected a left edge
+				dir = edge;
+				lastLeftEdgeTime = t;
+
+				message_start_time = lastLeftEdgeTime + (estimated_period * before_message_frac);
+				message_end_time = lastLeftEdgeTime + (estimated_period * (1 - before_message_frac));
+				message_duration = message_end_time - message_start_time;
+			}
+			else if (edge == 1)
+			{
+				// Detected a right edge
 				dir = edge;
 
+				// Estimate the period
+				estimated_period = t - lastLeftEdgeTime;
 				if (estimated_period > 10000)
 				{
 					estimated_period = 10000;
 				}
 
-				// Swap estimated periods
-				// This is cool, but if I ever find you doing it on any codebase I actually 
-				// need to maintain, I will force-feed you a null pointer.
-				estimated_period ^= estimated_other_period;
-				estimated_other_period ^= estimated_period;
-				estimated_period ^= estimated_other_period;
+				uint32_t detected_delay = t - message_end_time;
+				if (detected_delay > 10000 || detected_delay < 0)
+				{
+					// Do not display a message
+					message_start_time = 0;
+					message_end_time = 1;
+				}
+				else
+				{
+					message_start_time = t + detected_delay;
+					message_end_time = message_start_time + message_duration;
+				}
 			}
 		}
 	}
