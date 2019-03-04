@@ -21,12 +21,7 @@
 void Init_ACC()
 {												   // Setup the LIS3DHTR
 	lis3dhWriteByte(LIS3DH_CTRL_REG1, 0b10010111); // 1.344 kHz , No Low-power mode, all axes enabled
-	return;
-	TinyWireM.beginTransmission(LIS3DHTR_ADDR);
-	TinyWireM.send(0xAC);		// Access Command Register
-	TinyWireM.send(0b00000001); // Using one-shot mode for battery savings
-	//TinyWireM.send(B00000000);          // if setting continious mode for fast reads
-	TinyWireM.endTransmission(); // Send to the slave
+	lis3dhWriteByte(LIS3DH_CTRL_REG4, 0b00110000); // +-16g range, defaults otherwise
 }
 
 // Gets the current x-axis acceleration in m/s
@@ -35,7 +30,7 @@ float read_accel()
 	// TODO: read all 10 bits
 	// int raw = lis3dhReadInt(LIS3DH_OUT_X_L); // 10 bits of data
 	int8_t raw = lis3dhReadByte(LIS3DH_OUT_X_H);
-	return (int16_t(raw)<<2) * 0.004 * 9.8;			 // 4 milligees per digit in +-2g mode
+	return (int16_t(raw)<<2) * 0.004 * 9.8 * 8;			 // 4 milligees per digit in +-2g mode
 }
 
 void ShowLine(uint16_t line)
@@ -70,7 +65,7 @@ uint32_t current_time()
 // Positive dir detects minima, negative dir detects maxima
 uint32_t detect_edge(int8_t dir)
 {
-	const float DEBOUNCE_THRESH = 1.0; // m/s^2
+	const float DEBOUNCE_THRESH = 2.0; // m/s^2
 	float min_detected = 9999999;
 	uint32_t min_time = current_time();
 
