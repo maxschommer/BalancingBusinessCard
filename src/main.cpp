@@ -103,7 +103,7 @@ int main()
 	Init_ACC();
 
 	// Message Display Parameters
-	char message[] = "ERIC MAX";		   // Message to display
+	char message[] = "OLIN";		   // Message to display
 	int kerning = 2;					   // Space between letters, in bars
 	const float before_message_frac = 0.2; // Target fraction of cycle waiting before display
 
@@ -155,7 +155,7 @@ int main()
 			if (edge != 0)
 			{
 				estimated_period = t - lastEdgeTime;
-				lastEdgeTime = current_time();
+				lastEdgeTime = t;//current_time();
 				dir = edge;
 
 				if (estimated_period > 10000)
