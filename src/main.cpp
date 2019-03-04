@@ -32,8 +32,10 @@ void Init_ACC()
 // Gets the current x-axis acceleration in m/s
 float read_accel()
 {
-	int16_t raw = lis3dhReadInt(LIS3DH_OUT_X_L); // 10 bits of data
-	return (raw >> 6) * 0.004 / 9.8;			 // 4 milligees per digit in +-2g mode
+	// TODO: read all 10 bits
+	// int raw = lis3dhReadInt(LIS3DH_OUT_X_L); // 10 bits of data
+	int8_t raw = lis3dhReadByte(LIS3DH_OUT_X_H);
+	return (int16_t(raw)<<2) * 0.004 * 9.8;			 // 4 milligees per digit in +-2g mode
 }
 
 void ShowLine(uint16_t line)
@@ -127,8 +129,14 @@ int main()
 
 	while (1)
 	{
+		// ShowLine(read_accel());
+		// continue;
 		detect_edge(-1);
-		ShowLine(0b1);
+		ShowLine(0b01);
+		_delay_ms(100);
+		ShowLine(0);
+		detect_edge(1);
+		ShowLine(0b10);
 		_delay_ms(100);
 		ShowLine(0);
 	}
