@@ -30,7 +30,7 @@ float read_accel()
 	// TODO: read all 10 bits
 	// int raw = lis3dhReadInt(LIS3DH_OUT_X_L); // 10 bits of data
 	int8_t raw = lis3dhReadByte(LIS3DH_OUT_X_H);
-	return (int16_t(raw)<<2) * 0.004 * 9.8 * 8;			 // 4 milligees per digit in +-2g mode
+	return (int16_t(raw) << 2) * 0.004 * 9.8 * 8; // 4 milligees per digit in +-2g mode
 }
 
 void ShowLine(uint16_t line)
@@ -86,6 +86,8 @@ uint32_t detect_edge(int8_t dir)
 	}
 }
 
+// #define TEST_EDGE_DETECTION
+
 int main()
 {
 	// Configuring ATTiny
@@ -104,12 +106,12 @@ int main()
 	Init_ACC();
 
 	// Message Display Parameters
-	char message[] = "MAX";			 // Message to display
-	int kerning = 2;				 // Space between letters, in bars
-	float before_message_time = 0.2; // Target fraction of cycle waiting before display
+	char message[] = "ERIC MAX";			   // Message to display
+	int kerning = 2;					   // Space between letters, in bars
+	const float before_message_frac = 0.2; // Target fraction of cycle waiting before display
 
 	// Calculated values
-	float message_duration = 1.0 - 2 * before_message_time; // Target fraction of cycle
+	const float message_duration_frac = 1.0 - 2 * before_message_frac; // Target fraction of cycle
 
 	// Variable Initializations
 	uint32_t lastLeftEdgeTime = 0; // Time that the last left acceleration peak was detected
@@ -122,6 +124,7 @@ int main()
 
 	int byteCount = 0;
 
+#ifdef TEST_EDGE_DETECTION
 	while (1)
 	{
 		// ShowLine(read_accel());
@@ -135,6 +138,16 @@ int main()
 		_delay_ms(100);
 		ShowLine(0);
 	}
+#endif
+
+	// while(true) {
+	// 	uint32_t start = current_time() + 50000<<3;
+	// 	while (current_time() < start){
+	// 		ShowLine((start - current_time())/1000);
+	// 	}
+	// 	ShowLine(0);
+	// 	_delay_ms(1000);
+	// }
 
 	while (1)
 	{
@@ -142,10 +155,62 @@ int main()
 		uint32_t previous_edge = lastLeftEdgeTime;
 
 		lastLeftEdgeTime = detect_edge(1);
-		estimated_period = previous_edge - lastLeftEdgeTime;
+		estimated_period = lastLeftEdgeTime - previous_edge;
+
+		if (estimated_period > 20000)
+		{
+			estimated_period = 20000;
+		}
 
 		// Plan the coming playback
-		uint32_t message_start_time = lastLeftEdgeTime + (estimated_period / 2.0 * before_message_time);
+		uint32_t message_start_time = lastLeftEdgeTime + (estimated_period / 2.0 * before_message_frac);
+		uint32_t message_bar_length = estimated_period / 2.0 * message_duration_frac / flashPattern.length;
+		uint32_t message_end_time = message_start_time + message_bar_length * flashPattern.length;
+
+		// Perform the playback
+		while (current_time() < message_start_time)
+		{
+			// ShowLine((message_start_time - current_time()) / 1000);
+		}
+
+		while (true)
+		{
+			size_t currentIndex = (current_time() - message_start_time) / message_bar_length;
+			if (currentIndex >= flashPattern.length)
+			{
+				break;
+			}
+			ShowLine(flashPattern.data[currentIndex]);
+		}
+		ShowLine(0);
+
+		// Look for the return acceleration peak
+		lastRightEdgeTime = detect_edge(-1);
+
+		// Plan return playback
+		uint32_t detected_delay = lastRightEdgeTime - message_end_time;
+		if (detected_delay > 10000)
+		{
+			detected_delay = 10000;
+		}
+		message_start_time = lastRightEdgeTime + detected_delay;
+
+		// Perform the playback
+		while (current_time() < message_start_time)
+		{
+			;
+		}
+
+		while (true)
+		{
+			size_t currentIndex = (current_time() - message_start_time) / message_bar_length;
+			if (currentIndex >= flashPattern.length)
+			{
+				break;
+			}
+			ShowLine(flashPattern.data[flashPattern.length - currentIndex - 1]);
+		}
+		ShowLine(0);
 
 		// // Calculate how many ticks each line should last
 		// timeToWait = swingTime / (2 * buffer + flashPattern.length);
