@@ -112,34 +112,24 @@ int main()
 	long double timeToWait;
 
 	// Variable Initializations
-	uint32_t lastEdgeTime = current_time(); // Time that the last acceleration peak was detected
-	uint32_t estimated_period = 10000;		// In ticks, time to sweep one dir
-	int8_t dir = 1;							// 1 if moving right, -1 if moving left
+	uint32_t lastEdgeTime = current_time();  // Time that the last acceleration peak was detected
+	uint32_t estimated_period = 10000;		 // In ticks, time to sweep one dir
+	uint32_t estimated_other_period = 10000; // In ticks, time to sweep the direction we aren't going
+	int8_t dir = 1;							 // 1 if moving right, -1 if moving left
 
 	while (1)
 	{
 		// Detect the left edge
 		uint32_t t = current_time();
 
-		// Check for an edge, update variables if found
-		int8_t edge = detect_edge(t);
-
-		if (edge != 0)
-		{
-			estimated_period = t - lastEdgeTime; // TODO: Smooth this?
-			lastEdgeTime = t;
-			dir = edge;
-
-			if (estimated_period > 10000)
-			{
-				estimated_period = 10000;
-			}
-		}
-
 		// Calculate current position
 		float frac_time = float(t - lastEdgeTime) / estimated_period;
+
 		float frac_space = frac_time;
-		// float frac_space = (-cos(frac_time * M_PI) + 1) / 2;
+		// if (frac_time > 0 && frac_time < 1.0)
+		// {
+		// 	frac_space = (-cos(frac_time * M_PI) + 1) / 2;
+		// }
 
 		float frac_message = (frac_space - before_message_frac) / (1 - 2 * before_message_frac);
 
@@ -148,16 +138,38 @@ int main()
 		{
 			size_t currentIndex = frac_message * flashPattern.length;
 
-			if (dir < 0)
+			if (dir > 0)
 			{
 				currentIndex = flashPattern.length - currentIndex - 1;
 			}
-			if (dir > 0)
-				ShowLine(flashPattern.data[currentIndex]);
+
+			ShowLine(flashPattern.data[currentIndex]);
 		}
 		else
 		{
 			ShowLine(0);
+
+			// Check for an edge, update variables if found
+			int8_t edge = detect_edge(t);
+
+			if (edge != 0)
+			{
+				estimated_period = t - lastEdgeTime;
+				lastEdgeTime = current_time();
+				dir = edge;
+
+				if (estimated_period > 10000)
+				{
+					estimated_period = 10000;
+				}
+
+				// Swap estimated periods
+				// This is cool, but if I ever find you doing it on any codebase I actually 
+				// need to maintain, I will force-feed you a null pointer.
+				estimated_period ^= estimated_other_period;
+				estimated_other_period ^= estimated_period;
+				estimated_period ^= estimated_other_period;
+			}
 		}
 	}
 }
