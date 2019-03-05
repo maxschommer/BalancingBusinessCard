@@ -61,7 +61,7 @@ uint32_t current_time()
 int8_t detect_edge(uint32_t t)
 {
 	// TODO: switch to a filter?
-	const float DEBOUNCE_THRESH = 2.0; // m/s^2
+	const float DEBOUNCE_THRESH = 4.0; // m/s^2
 
 	static int8_t dir = 1; // Start looking for a max
 
@@ -103,7 +103,7 @@ int main()
 	Init_ACC();
 
 	// Message Display Parameters
-	char message[] = "OLIN";			   // Message to display
+	char message[] = "MAX ERIC";		   // Message to display
 	int kerning = 2;					   // Space between letters, in bars
 	const float before_message_frac = 0.2; // Target fraction of cycle waiting before display
 
@@ -134,6 +134,17 @@ int main()
 		// // }
 
 		float frac_message = (t - message_start_time) / float(message_end_time - message_start_time);
+
+		// float frac_space = (-cos(frac_message * M_PI) + 1) / 2;
+
+		// if (dir>0 && frac_message>=0)
+		// {
+		// 	ShowLine(1 << int(frac_message * 9));
+		// }
+		// else
+		// {
+		// 	ShowLine(0);
+		// }
 
 		// (frac_space - before_message_frac) / (1 - 2 * before_message_frac);
 
