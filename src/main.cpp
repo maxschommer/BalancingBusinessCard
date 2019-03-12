@@ -21,19 +21,16 @@
 void Init_ACC()
 {												   // Setup the LIS3DHTR
 	lis3dhWriteByte(LIS3DH_CTRL_REG1, 0b10010111); // 1.344 kHz , No Low-power mode, all axes enabled
-	return;
-	TinyWireM.beginTransmission(LIS3DHTR_ADDR);
-	TinyWireM.send(0xAC);		// Access Command Register
-	TinyWireM.send(0b00000001); // Using one-shot mode for battery savings
-	//TinyWireM.send(B00000000);          // if setting continious mode for fast reads
-	TinyWireM.endTransmission(); // Send to the slave
+	lis3dhWriteByte(LIS3DH_CTRL_REG4, 0b00110000); // +-16g range, defaults otherwise
 }
 
 // Gets the current x-axis acceleration in m/s
 float read_accel()
 {
-	int16_t raw = lis3dhReadInt(LIS3DH_OUT_X_L); // 10 bits of data
-	return (raw >> 6) * 0.004 / 9.8;			 // 4 milligees per digit in +-2g mode
+	// TODO: read all 10 bits
+	// int raw = lis3dhReadInt(LIS3DH_OUT_X_L); // 10 bits of data
+	int8_t raw = lis3dhReadByte(LIS3DH_OUT_X_H);
+	return (int16_t(raw) << 2) * 0.004 * 9.8 * 8; // 4 milligees per digit in +-2g mode
 }
 
 void ShowLine(uint16_t line)
@@ -43,11 +40,6 @@ void ShowLine(uint16_t line)
 	PORTB |= ((line & 0b001000000) >> 1);								 // LED6
 	PORTB |= ((line & 0b010000000) >> 3);								 // LED7
 	PORTB |= ((line & 0b100000000) >> 5);								 // LED8
-}
-
-uint8_t test_i2c()
-{
-	return lis3dhReadByte(LIS3DH_OUT_X_H);
 }
 
 // current_time returns the current time in increments of about 0.1 ms (1 tick), 0.000128s for 2MHz clock
@@ -65,28 +57,32 @@ uint32_t current_time()
 	return TCNT0L + 256 * timerOverflowCount; // total time since start of uC
 }
 
-// Positive dir detects minima, negative dir detects maxima
-uint32_t detect_edge(int8_t dir)
+// Returns 1 if maxima detected, -1 if minima detected, or 0
+int8_t detect_edge(uint32_t t)
 {
-	const float DEBOUNCE_THRESH = 1.0; // m/s^2
-	float min_detected = 9999999;
-	uint32_t min_time = current_time();
+	// TODO: switch to a filter?
+	const float DEBOUNCE_THRESH = 4.0; // m/s^2
 
-	while (true)
+	static int8_t dir = 1; // Start looking for a max
+
+	static float min_detected = 9999999;
+
+	float val = read_accel() * dir;
+
+	if (val < min_detected)
 	{
-		float val = read_accel() * dir;
-		uint32_t t = current_time();
-		if (val > min_detected + DEBOUNCE_THRESH)
-		{
-			return min_time;
-		}
-
-		if (val < min_detected)
-		{
-			min_detected = val;
-			min_time = t;
-		}
+		min_detected = val;
 	}
+
+	if (val > min_detected + DEBOUNCE_THRESH)
+	{
+		// Edge detected
+		min_detected = 9999999;
+		dir *= -1;
+		return dir;
+	}
+
+	return 0;
 }
 
 int main()
@@ -107,99 +103,105 @@ int main()
 	Init_ACC();
 
 	// Message Display Parameters
-	char message[] = "MAX";			 // Message to display
-	int kerning = 2;				 // Space between letters, in bars
-	float before_message_time = 0.2; // Target fraction of cycle waiting before display
-
-	// Calculated values
-	float message_duration = 1.0 - 2 * before_message_time; // Target fraction of cycle
-
-	// Variable Initializations
-	uint32_t lastLeftEdgeTime = 0; // Time that the last left acceleration peak was detected
-	uint32_t lastRightEdgeTime = 0;
-	uint32_t estimated_period = 10000; // In ticks
+	char message[] = "MAX ERIC";		   // Message to display
+	int kerning = 2;					   // Space between letters, in bars
+	const float before_message_frac = 0.2; // Target fraction of cycle waiting before display
 
 	// Generate Flash Pattern
 	struct FlashPattern flashPattern = convertString(message, kerning);
 	long double timeToWait;
 
-	int byteCount = 0;
-
-	while (1)
-	{
-		detect_edge(-1);
-		ShowLine(0b1);
-		_delay_ms(100);
-		ShowLine(0);
-	}
+	// Variable Initializations
+	uint32_t lastLeftEdgeTime = current_time(); // Time that the last acceleration peak was detected
+	uint32_t estimated_period = 10000;			// In ticks, time to sweep right
+	uint32_t message_start_time = 0;
+	uint32_t message_end_time = 1;
+	uint32_t message_duration = 1;
+	int8_t dir = 1; // 1 if moving right, -1 if moving left
 
 	while (1)
 	{
 		// Detect the left edge
-		uint32_t previous_edge = lastLeftEdgeTime;
+		uint32_t t = current_time();
 
-		lastLeftEdgeTime = detect_edge(1);
-		estimated_period = previous_edge - lastLeftEdgeTime;
+		// // Calculate current position
+		// float frac_time = float(t - lastEdgeTime) / estimated_period;
 
-		// Plan the coming playback
-		uint32_t message_start_time = lastLeftEdgeTime + (estimated_period / 2.0 * before_message_time);
+		// float frac_space = frac_time;
+		// // if (frac_time > 0 && frac_time < 1.0)
+		// // {
+		// // 	frac_space = (-cos(frac_time * M_PI) + 1) / 2;
+		// // }
 
-		// // Calculate how many ticks each line should last
-		// timeToWait = swingTime / (2 * buffer + flashPattern.length);
+		float frac_message = (t - message_start_time) / float(message_end_time - message_start_time);
 
-		// // Debounce tilt switch
-		// if (((PINA & (1 << PINA1)) != (switchState << PINA1))) // Switch triggered
+		// float frac_space = (-cos(frac_message * M_PI) + 1) / 2;
+
+		// if (dir>0 && frac_message>=0)
 		// {
-		// 	// PORTA = PORTA | (1<<PA3);
-		// 	if (countStarted == false) // If counter hasn't started yet
-		// 	{
-		// 		countStarted = true;			// Start counter
-		// 		switchPreviousTime = totalTime; // Set counter start time
-		// 	}
-		// 	else // If the counter has started
-		// 	{
-		// 		if ((totalTime - switchPreviousTime) > switchDebounceTime)
-		// 		{
-		// 			// On change of state, update trailing average
-		// 			swingTime = swingTime * (swingTimeTrailingAvgLen - 1) / swingTimeTrailingAvgLen +
-		// 						(totalTime - lastSwitchedTime) / swingTimeTrailingAvgLen;
-
-		// 			lastSwitchedTime = totalTime;
-		// 			switchState = !switchState;
-		// 			countStarted = false;  // End the counter
-		// 			messageStarted = true; // Start message
-		// 		}
-		// 	}
+		// 	ShowLine(1 << int(frac_message * 9));
 		// }
-		// else // If switch is not triggered
+		// else
 		// {
-		// 	countStarted = false; // End the counter
+		// 	ShowLine(0);
 		// }
 
-		// if (messageStarted)
-		// {
-		// 	if ((totalTime - lastSwitchedTime) > (buffer * timeToWait))
-		// 	{
-		// 		if (switchState)
-		// 		{
-		// 			// Get index of message using the time.
-		// 			messageIndex = flashPattern.length - floor((totalTime - lastSwitchedTime - buffer * timeToWait) / timeToWait);
-		// 		}
-		// 		else
-		// 		{
-		// 			// Get index of message using the time.
-		// 			messageIndex = floor((totalTime - lastSwitchedTime - buffer * timeToWait) / timeToWait);
-		// 		}
-		// 		if (messageIndex < flashPattern.length)
-		// 		{
-		// 			ShowLine(flashPattern.data[messageIndex]);
-		// 		}
-		// 		else // Message display finished
-		// 		{
-		// 			messageStarted = false;
-		// 			messageIndex = 0;
-		// 		}
-		// 	}
-		// }
+		// (frac_space - before_message_frac) / (1 - 2 * before_message_frac);
+
+		// Display
+		if (frac_message >= 0.0 && frac_message < 1.0)
+		{
+			size_t currentIndex = frac_message * flashPattern.length;
+
+			if (dir > 0)
+			{
+				currentIndex = flashPattern.length - currentIndex - 1;
+			}
+
+			ShowLine(flashPattern.data[currentIndex]);
+		}
+		else
+		{
+			ShowLine(0);
+
+			// Check for an edge, update variables if found
+			int8_t edge = detect_edge(t);
+
+			if (edge == -1)
+			{
+				// Detected a left edge
+				dir = edge;
+				lastLeftEdgeTime = t;
+
+				message_start_time = lastLeftEdgeTime + (estimated_period * before_message_frac);
+				message_end_time = lastLeftEdgeTime + (estimated_period * (1 - before_message_frac));
+				message_duration = message_end_time - message_start_time;
+			}
+			else if (edge == 1)
+			{
+				// Detected a right edge
+				dir = edge;
+
+				// Estimate the period
+				estimated_period = t - lastLeftEdgeTime;
+				if (estimated_period > 10000)
+				{
+					estimated_period = 10000;
+				}
+
+				uint32_t detected_delay = t - message_end_time;
+				if (detected_delay > 10000 || detected_delay < 0)
+				{
+					// Do not display a message
+					message_start_time = 0;
+					message_end_time = 1;
+				}
+				else
+				{
+					message_start_time = t + detected_delay;
+					message_end_time = message_start_time + message_duration;
+				}
+			}
+		}
 	}
 }

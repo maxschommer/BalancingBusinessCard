@@ -30,7 +30,7 @@ int lis3dhReadInt(uint8_t reg)
 {
     unsigned char msb, lsb;
     TinyWireM.beginTransmission(LIS3DHTR_ADDR);
-    TinyWireM.send(reg);
+    TinyWireM.send(reg|0x80); // Set the high bit to force address auto-increment
     TinyWireM.endTransmission();
     TinyWireM.requestFrom(LIS3DHTR_ADDR, 2);
     while (TinyWireM.available() < 2)
