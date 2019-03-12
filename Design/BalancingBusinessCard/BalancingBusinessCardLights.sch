@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:BalancingBusinessCardLights-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -110,7 +111,7 @@ F 3 "" H 3100 4950 50  0001 C CNN
 	1    3100 4950
 	1    0    0    -1  
 $EndComp
-Text Label 4100 3850 0    50   ~ 0
+Text Label 4900 3850 0    50   ~ 0
 MOSI
 Text Label 4100 3950 0    50   ~ 0
 MISO
@@ -193,8 +194,6 @@ F 3 "" H 3750 2400 50  0001 C CNN
 	1    3750 2400
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3800 3850 4100 3850
 Wire Wire Line
 	3800 4050 4100 4050
 Wire Wire Line
@@ -379,7 +378,7 @@ Wire Wire Line
 	7250 1300 7175 1300
 Connection ~ 7250 1300
 $Comp
-L Connector:TestPoint TP101
+L Connector:Test_Point TP101
 U 1 1 5C7DEA24
 P 5250 2750
 F 0 "TP101" V 5204 2938 50  0000 L CNN
@@ -390,7 +389,7 @@ F 3 "~" H 5450 2750 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Connector:TestPoint TP102
+L Connector:Test_Point TP102
 U 1 1 5C7DEC98
 P 5250 2950
 F 0 "TP102" V 5204 3138 50  0000 L CNN
@@ -438,40 +437,18 @@ F 3 "" H 5200 3450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Switch:SW_Push SW101
-U 1 1 5C7E16C0
-P 8200 4300
-F 0 "SW101" H 8200 4585 50  0000 C CNN
-F 1 "SW_Push" H 8200 4494 50  0000 C CNN
-F 2 "CustomFootprints:TouchButton1" H 8200 4500 50  0001 C CNN
-F 3 "" H 8200 4500 50  0001 C CNN
-	1    8200 4300
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR0114
 U 1 1 5C7E1777
-P 8400 4300
-F 0 "#PWR0114" H 8400 4050 50  0001 C CNN
-F 1 "GND" H 8405 4127 50  0000 C CNN
-F 2 "" H 8400 4300 50  0001 C CNN
-F 3 "" H 8400 4300 50  0001 C CNN
-	1    8400 4300
+P 8000 4600
+F 0 "#PWR0114" H 8000 4350 50  0001 C CNN
+F 1 "GND" H 8005 4427 50  0000 C CNN
+F 2 "" H 8000 4600 50  0001 C CNN
+F 3 "" H 8000 4600 50  0001 C CNN
+	1    8000 4600
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+3V3 #PWR0113
-U 1 1 5C7E1803
-P 7600 4300
-F 0 "#PWR0113" H 7600 4150 50  0001 C CNN
-F 1 "+3V3" V 7615 4428 50  0000 L CNN
-F 2 "" H 7600 4300 50  0001 C CNN
-F 3 "" H 7600 4300 50  0001 C CNN
-	1    7600 4300
-	0    -1   -1   0   
-$EndComp
 Text Label 8000 4300 1    50   ~ 0
-TOUCH
+TOUCH_REVEIVE
 $Comp
 L Device:R R101
 U 1 1 5C7E1882
@@ -483,8 +460,41 @@ F 3 "~" H 7750 4300 50  0001 C CNN
 	1    7750 4300
 	0    1    1    0   
 $EndComp
+Text Label 4400 3850 1    50   ~ 0
+TOUCH_SEND
+Text Label 3800 3050 0    50   ~ 0
+TOUCH_RECEIVE
+Wire Wire Line
+	3800 3850 4900 3850
+Text Label 7325 4300 2    50   ~ 0
+TOUCH_SEND
+Wire Wire Line
+	7325 4300 7600 4300
+$Comp
+L Device:C C?
+U 1 1 5C837217
+P 8000 4450
+F 0 "C?" H 8115 4496 50  0000 L CNN
+F 1 "22pf" H 8115 4405 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 8038 4300 50  0001 C CNN
+F 3 "~" H 8000 4450 50  0001 C CNN
+	1    8000 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Test_Point BTN?
+U 1 1 5C837578
+P 8400 4300
+F 0 "BTN?" H 8458 4420 50  0000 L CNN
+F 1 "Cap Sense" H 8458 4329 50  0000 L CNN
+F 2 "CustomFootprints:CAP_TOUCH" H 8600 4300 50  0001 C CNN
+F 3 "~" H 8600 4300 50  0001 C CNN
+	1    8400 4300
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
 	7900 4300 8000 4300
-Text Label 3800 3050 0    50   ~ 0
-TOUCH
+Connection ~ 8000 4300
+Wire Wire Line
+	8000 4300 8400 4300
 $EndSCHEMATC
