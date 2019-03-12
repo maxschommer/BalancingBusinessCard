@@ -378,23 +378,23 @@ Wire Wire Line
 	7250 1300 7175 1300
 Connection ~ 7250 1300
 $Comp
-L Connector:Test_Point TP101
+L Custom:Test_Point TP101
 U 1 1 5C7DEA24
 P 5250 2750
 F 0 "TP101" V 5204 2938 50  0000 L CNN
 F 1 "TestPoint" V 5295 2938 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D3.0mm" H 5450 2750 50  0001 C CNN
+F 2 "Measurement_Points:Measurement_Point_Round-SMD-Pad_Small" H 5450 2750 50  0001 C CNN
 F 3 "~" H 5450 2750 50  0001 C CNN
 	1    5250 2750
 	0    1    1    0   
 $EndComp
 $Comp
-L Connector:Test_Point TP102
+L Custom:Test_Point TP102
 U 1 1 5C7DEC98
 P 5250 2950
 F 0 "TP102" V 5204 3138 50  0000 L CNN
 F 1 "TestPoint" V 5295 3138 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D3.0mm" H 5450 2950 50  0001 C CNN
+F 2 "Measurement_Points:Measurement_Point_Round-SMD-Pad_Small" H 5450 2950 50  0001 C CNN
 F 3 "~" H 5450 2950 50  0001 C CNN
 	1    5250 2950
 	0    1    1    0   
@@ -482,7 +482,7 @@ F 3 "~" H 8000 4450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Test_Point BTN?
+L Custom:Test_Point BTN?
 U 1 1 5C837578
 P 8400 4300
 F 0 "BTN?" H 8458 4420 50  0000 L CNN
