@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>/home/maximilian/Documents/Github/BalancingBusinessCard/Design/BalancingBusinessCard/BalancingBusinessCardLights.sch</source>
-    <date>Sat 30 Mar 2019 11:31:58 PM EDT</date>
+    <date>Sun 31 Mar 2019 12:17:18 AM EDT</date>
     <tool>Eeschema 5.1.0-unknown-3692c51~82~ubuntu16.04.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -203,7 +203,7 @@
       <tstamp>5BCBD4AC</tstamp>
     </comp>
     <comp ref="R4">
-      <value>150R</value>
+      <value>240R</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="R" description="Resistor"/>
@@ -211,7 +211,7 @@
       <tstamp>5C0EA341</tstamp>
     </comp>
     <comp ref="R5">
-      <value>150R</value>
+      <value>240R</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="R" description="Resistor"/>
@@ -219,7 +219,7 @@
       <tstamp>5C0EA8FF</tstamp>
     </comp>
     <comp ref="R6">
-      <value>150R</value>
+      <value>240R</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="R" description="Resistor"/>
@@ -227,7 +227,7 @@
       <tstamp>5C0EA93D</tstamp>
     </comp>
     <comp ref="R7">
-      <value>150R</value>
+      <value>240R</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="R" description="Resistor"/>
@@ -235,7 +235,7 @@
       <tstamp>5C0EA97D</tstamp>
     </comp>
     <comp ref="R8">
-      <value>150R</value>
+      <value>240R</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="R" description="Resistor"/>
@@ -243,7 +243,7 @@
       <tstamp>5C0EA9B5</tstamp>
     </comp>
     <comp ref="R9">
-      <value>150R</value>
+      <value>240R</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="R" description="Resistor"/>
@@ -251,7 +251,7 @@
       <tstamp>5C0EA9FD</tstamp>
     </comp>
     <comp ref="R10">
-      <value>150R</value>
+      <value>240R</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="R" description="Resistor"/>
@@ -259,7 +259,7 @@
       <tstamp>5C0EAA3F</tstamp>
     </comp>
     <comp ref="R11">
-      <value>150R</value>
+      <value>240R</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="R" description="Resistor"/>
@@ -267,7 +267,7 @@
       <tstamp>5C0EAA7D</tstamp>
     </comp>
     <comp ref="R12">
-      <value>150R</value>
+      <value>240R</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="R" description="Resistor"/>
