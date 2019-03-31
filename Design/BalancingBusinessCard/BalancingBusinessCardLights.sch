@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:BalancingBusinessCardLights-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -38,7 +38,7 @@ L Device:Battery BT1
 U 1 1 5BCBEFF8
 P 4400 1300
 F 0 "BT1" H 4508 1346 50  0000 L CNN
-F 1 "Battery" H 4508 1255 50  0000 L CNN
+F 1 "CR-2016" H 4508 1255 50  0000 L CNN
 F 2 "CustomFootprints:CR2016VP" V 4400 1360 50  0001 C CNN
 F 3 "~" V 4400 1360 50  0001 C CNN
 	1    4400 1300
@@ -73,7 +73,7 @@ L Connector_Generic:Conn_02x03_Odd_Even ICSP1
 U 1 1 5BCBEC7A
 P 3000 5850
 F 0 "ICSP1" H 3050 6050 50  0000 C CNN
-F 1 "Conn_02x03_Odd_Even" H 3050 5650 50  0000 C CNN
+F 1 "ICSP" H 3050 5650 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 3000 5850 50  0001 C CNN
 F 3 "~" H 3000 5850 50  0001 C CNN
 	1    3000 5850
@@ -240,7 +240,7 @@ L MCU_Microchip_ATtiny:ATtiny261A-MU U1
 U 1 1 5C0B1B62
 P 3100 3750
 F 0 "U1" H 2459 3796 50  0000 R CNN
-F 1 "ATtiny261A-MU" H 2459 3705 50  0000 R CNN
+F 1 "ATTINY861-15MZ" H 2459 3705 50  0000 R CNN
 F 2 "Housings_DFN_QFN:QFN-32-1EP_5x5mm_Pitch0.5mm" H 3100 3750 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/doc8197.pdf" H 3100 3750 50  0001 C CNN
 	1    3100 3750
@@ -408,7 +408,7 @@ L Connector_Generic:Conn_02x01 J1
 U 1 1 5C7DF1A3
 P 5400 3450
 F 0 "J1" H 5450 3667 50  0000 C CNN
-F 1 "Conn_02x01" H 5450 3576 50  0000 C CNN
+F 1 "PWR" H 5450 3576 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 5400 3450 50  0001 C CNN
 F 3 "~" H 5400 3450 50  0001 C CNN
 	1    5400 3450

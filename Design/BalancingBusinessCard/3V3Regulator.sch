@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:BalancingBusinessCardLights-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -19,7 +19,7 @@ L Regulator_Switching:MCP1640DCH U3
 U 1 1 5C0ED17A
 P 2825 2175
 F 0 "U3" H 2825 2642 50  0000 C CNN
-F 1 "MCP1640DCH" H 2825 2551 50  0000 C CNN
+F 1 "MCP1640DT-I/CHY" H 2825 2551 50  0000 C CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23-6" H 2875 1925 50  0001 L CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20002234D.pdf" H 2575 2625 50  0001 C CNN
 	1    2825 2175

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>/home/eric/git/BalancingBusinessCard/Design/BalancingBusinessCard/BalancingBusinessCardLights.sch</source>
-    <date>Sat 30 Mar 2019 11:11:11 PM EDT</date>
-    <tool>Eeschema 5.0.2-bee76a0~70~ubuntu18.04.1</tool>
+    <source>/home/maximilian/Documents/Github/BalancingBusinessCard/Design/BalancingBusinessCard/BalancingBusinessCardLights.sch</source>
+    <date>Sat 30 Mar 2019 11:31:58 PM EDT</date>
+    <tool>Eeschema 5.1.0-unknown-3692c51~82~ubuntu16.04.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title/>
@@ -59,15 +59,15 @@
   </design>
   <components>
     <comp ref="BT1">
-      <value>Battery</value>
+      <value>CR-2016</value>
       <footprint>CustomFootprints:CR2016VP</footprint>
       <datasheet>~</datasheet>
-      <libsource lib="Device" part="Battery" description="Multiple-cell battery"/>
+      <libsource lib="Device" part="Battery" description="Battery (multiple cells)"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5BCBEFF8</tstamp>
     </comp>
     <comp ref="ICSP1">
-      <value>Conn_02x03_Odd_Even</value>
+      <value>ICSP</value>
       <footprint>Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Connector_Generic" part="Conn_02x03_Odd_Even" description="Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"/>
@@ -83,7 +83,7 @@
       <tstamp>5BCC392A</tstamp>
     </comp>
     <comp ref="U1">
-      <value>ATtiny261A-MU</value>
+      <value>ATTINY861-15MZ</value>
       <footprint>Housings_DFN_QFN:QFN-32-1EP_5x5mm_Pitch0.5mm</footprint>
       <datasheet>http://ww1.microchip.com/downloads/en/DeviceDoc/doc8197.pdf</datasheet>
       <libsource lib="MCU_Microchip_ATtiny" part="ATtiny261A-MU" description="20MHz, 2kB Flash, 128B SRAM, 128B EEPROM, QFN-32"/>
@@ -123,7 +123,7 @@
       <tstamp>5C7DEC98</tstamp>
     </comp>
     <comp ref="J1">
-      <value>Conn_02x01</value>
+      <value>PWR</value>
       <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Connector_Generic" part="Conn_02x01" description="Generic connector, double row, 02x01, this symbol is compatible with counter-clockwise, top-bottom and odd-even numbering schemes., script generated (kicad-library-utils/schlib/autogen/connector/)"/>
@@ -154,27 +154,11 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5C837578</tstamp>
     </comp>
-    <comp ref="D2">
-      <value>LED</value>
-      <footprint>LED_SMD:LED_0603_1608Metric</footprint>
-      <datasheet>~</datasheet>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
-      <tstamp>5BCBC85A</tstamp>
-    </comp>
-    <comp ref="D3">
-      <value>LED</value>
-      <footprint>LED_SMD:LED_0603_1608Metric</footprint>
-      <datasheet>~</datasheet>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
-      <tstamp>5BCBCA64</tstamp>
-    </comp>
     <comp ref="D4">
       <value>LED</value>
       <footprint>LED_SMD:LED_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <libsource lib="Device" part="LED" description="LED generic"/>
       <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
       <tstamp>5BCBCA94</tstamp>
     </comp>
@@ -182,7 +166,7 @@
       <value>LED</value>
       <footprint>LED_SMD:LED_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <libsource lib="Device" part="LED" description="LED generic"/>
       <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
       <tstamp>5BCBCAE0</tstamp>
     </comp>
@@ -190,7 +174,7 @@
       <value>LED</value>
       <footprint>LED_SMD:LED_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <libsource lib="Device" part="LED" description="LED generic"/>
       <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
       <tstamp>5BCBCB54</tstamp>
     </comp>
@@ -198,7 +182,7 @@
       <value>LED</value>
       <footprint>LED_SMD:LED_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <libsource lib="Device" part="LED" description="LED generic"/>
       <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
       <tstamp>5BCBCC00</tstamp>
     </comp>
@@ -206,23 +190,15 @@
       <value>LED</value>
       <footprint>LED_SMD:LED_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <libsource lib="Device" part="LED" description="LED generic"/>
       <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
       <tstamp>5BCBCCF0</tstamp>
-    </comp>
-    <comp ref="D1">
-      <value>LED</value>
-      <footprint>LED_SMD:LED_0603_1608Metric</footprint>
-      <datasheet>~</datasheet>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
-      <tstamp>5BCBD2AC</tstamp>
     </comp>
     <comp ref="D9">
       <value>LED</value>
       <footprint>LED_SMD:LED_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <libsource lib="Device" part="LED" description="LED generic"/>
       <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
       <tstamp>5BCBD4AC</tstamp>
     </comp>
@@ -298,6 +274,30 @@
       <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
       <tstamp>5C0EAAC7</tstamp>
     </comp>
+    <comp ref="D3">
+      <value>LED</value>
+      <footprint>LED_SMD:LED_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="LED" description="LED generic"/>
+      <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
+      <tstamp>5BCBCA64</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>LED</value>
+      <footprint>LED_SMD:LED_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="LED" description="LED generic"/>
+      <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
+      <tstamp>5BCBC85A</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>LED</value>
+      <footprint>LED_SMD:LED_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="LED" description="LED generic"/>
+      <sheetpath names="/LightModule/" tstamps="/5BCB9BF4/"/>
+      <tstamp>5BCBD2AC</tstamp>
+    </comp>
     <comp ref="C3">
       <value>10uF</value>
       <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
@@ -326,7 +326,7 @@
       <tstamp>5BCBF7EE</tstamp>
     </comp>
     <comp ref="U3">
-      <value>MCP1640DCH</value>
+      <value>MCP1640DT-I/CHY</value>
       <footprint>TO_SOT_Packages_SMD:SOT-23-6</footprint>
       <datasheet>http://ww1.microchip.com/downloads/en/DeviceDoc/20002234D.pdf</datasheet>
       <libsource lib="Regulator_Switching" part="MCP1640DCH" description="Synchronous Boost Regulator, Adjustable Output 2.0V-5.5V, PWM Only Input to Output Bypass, SOT-23"/>
@@ -453,7 +453,7 @@
       </pins>
     </libpart>
     <libpart lib="Device" part="Battery">
-      <description>Multiple-cell battery</description>
+      <description>Battery (multiple cells)</description>
       <docs>~</docs>
       <fields>
         <field name="Reference">BT</field>
@@ -468,7 +468,7 @@
       <description>Unpolarized capacitor</description>
       <docs>~</docs>
       <footprints>
-        <fp>C_*</fp>
+        <fp>*:C_*</fp>
       </footprints>
       <fields>
         <field name="Reference">C</field>
@@ -486,7 +486,7 @@
         <fp>Choke_*</fp>
         <fp>*Coil*</fp>
         <fp>Inductor_*</fp>
-        <fp>L_*</fp>
+        <fp>*:L_*</fp>
       </footprints>
       <fields>
         <field name="Reference">L</field>
@@ -498,7 +498,7 @@
       </pins>
     </libpart>
     <libpart lib="Device" part="LED">
-      <description>Light emitting diode</description>
+      <description>LED generic</description>
       <docs>~</docs>
       <footprints>
         <fp>LED*</fp>
@@ -518,7 +518,7 @@
       <description>Resistor</description>
       <docs>~</docs>
       <footprints>
-        <fp>R_*</fp>
+        <fp>*:R_*</fp>
       </footprints>
       <fields>
         <field name="Reference">R</field>
@@ -529,58 +529,60 @@
         <pin num="2" name="~" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="MCU_Microchip_ATtiny" part="ATtiny461V-10MU">
+    <libpart lib="MCU_Microchip_ATtiny" part="ATtiny261V-10MU">
       <aliases>
+        <alias>ATtiny261-20MU</alias>
+        <alias>ATtiny261A-MU</alias>
+        <alias>ATtiny461V-10MU</alias>
         <alias>ATtiny461-20MU</alias>
+        <alias>ATtiny461A-MU</alias>
         <alias>ATtiny861V-10MU</alias>
         <alias>ATtiny861-20MU</alias>
-        <alias>ATtiny261A-MU</alias>
-        <alias>ATtiny461A-MU</alias>
         <alias>ATtiny861A-MU</alias>
       </aliases>
-      <description>10MHz, 4kB Flash, 256B SRAM, 256B EEPROM, QFN-32</description>
+      <description>10MHz, 2kB Flash, 128B SRAM, 128B EEPROM, QFN-32</description>
       <docs>http://ww1.microchip.com/downloads/en/DeviceDoc/atmel-2588-8-bit-avr-microcontrollers-tinyavr-attiny261-attiny461-attiny861_datasheet.pdf</docs>
       <footprints>
-        <fp>QFN*1EP*5x5mm*P0.5mm*</fp>
+        <fp>QFN*1EP*5x5mm*P0.5mm*EP3.8x3.8mm*</fp>
       </footprints>
       <fields>
         <field name="Reference">U</field>
-        <field name="Value">ATtiny461V-10MU</field>
-        <field name="Footprint">Package_DFN_QFN:QFN-32-1EP_5x5mm_P0.5mm_EP3.1x3.1mm</field>
+        <field name="Value">ATtiny261V-10MU</field>
+        <field name="Footprint">Package_DFN_QFN:QFN-32-1EP_5x5mm_P0.5mm_EP3.8x3.8mm</field>
       </fields>
       <pins>
         <pin num="1" name="NC" type="NotConnected"/>
-        <pin num="2" name="PB3" type="3state"/>
+        <pin num="2" name="PB3" type="BiDi"/>
         <pin num="3" name="NC" type="NotConnected"/>
         <pin num="4" name="VCC" type="power_in"/>
         <pin num="5" name="GND" type="power_in"/>
         <pin num="6" name="NC" type="NotConnected"/>
-        <pin num="7" name="XTAL1/PB4" type="3state"/>
-        <pin num="8" name="XTAL2/PB5" type="3state"/>
+        <pin num="7" name="XTAL1/PB4" type="BiDi"/>
+        <pin num="8" name="XTAL2/PB5" type="BiDi"/>
         <pin num="9" name="NC" type="NotConnected"/>
-        <pin num="10" name="PB6" type="3state"/>
-        <pin num="11" name="~RESET~/PB7" type="3state"/>
+        <pin num="10" name="PB6" type="BiDi"/>
+        <pin num="11" name="~RESET~/PB7" type="BiDi"/>
         <pin num="12" name="NC" type="NotConnected"/>
-        <pin num="13" name="PA7" type="3state"/>
-        <pin num="14" name="PA6" type="3state"/>
-        <pin num="15" name="PA5" type="3state"/>
+        <pin num="13" name="PA7" type="BiDi"/>
+        <pin num="14" name="PA6" type="BiDi"/>
+        <pin num="15" name="PA5" type="BiDi"/>
         <pin num="16" name="NC" type="NotConnected"/>
-        <pin num="17" name="PA4" type="3state"/>
+        <pin num="17" name="PA4" type="BiDi"/>
         <pin num="18" name="AVCC" type="power_in"/>
         <pin num="19" name="NC" type="NotConnected"/>
         <pin num="20" name="NC" type="NotConnected"/>
         <pin num="21" name="AGND" type="power_in"/>
-        <pin num="22" name="AREF/PA3" type="3state"/>
-        <pin num="23" name="PA2" type="3state"/>
+        <pin num="22" name="AREF/PA3" type="BiDi"/>
+        <pin num="23" name="PA2" type="BiDi"/>
         <pin num="24" name="NC" type="NotConnected"/>
-        <pin num="25" name="PA1" type="3state"/>
-        <pin num="26" name="PA0" type="3state"/>
+        <pin num="25" name="PA1" type="BiDi"/>
+        <pin num="26" name="PA0" type="BiDi"/>
         <pin num="27" name="NC" type="NotConnected"/>
         <pin num="28" name="NC" type="NotConnected"/>
         <pin num="29" name="NC" type="NotConnected"/>
-        <pin num="30" name="PB0" type="3state"/>
-        <pin num="31" name="PB1" type="3state"/>
-        <pin num="32" name="PB2" type="3state"/>
+        <pin num="30" name="PB0" type="BiDi"/>
+        <pin num="31" name="PB1" type="BiDi"/>
+        <pin num="32" name="PB2" type="BiDi"/>
         <pin num="33" name="GND" type="passive"/>
       </pins>
     </libpart>
@@ -615,7 +617,7 @@
       <uri>/usr/share/kicad/library/Connector_Generic.lib</uri>
     </library>
     <library logical="Custom">
-      <uri>/home/eric/git/BalancingBusinessCard/Design/BalancingBusinessCard/Custom.lib</uri>
+      <uri>/home/maximilian/Documents/Github/BalancingBusinessCard/Design/BalancingBusinessCard/Custom.lib</uri>
     </library>
     <library logical="Device">
       <uri>/usr/share/kicad/library/Device.lib</uri>
@@ -629,37 +631,37 @@
   </libraries>
   <nets>
     <net code="1" name="+3V3">
-      <node ref="U1" pin="18"/>
+      <node ref="ICSP1" pin="2"/>
       <node ref="U2" pin="1"/>
       <node ref="U2" pin="14"/>
-      <node ref="U3" pin="5"/>
       <node ref="C1" pin="1"/>
-      <node ref="ICSP1" pin="2"/>
+      <node ref="U1" pin="18"/>
       <node ref="R1" pin="1"/>
       <node ref="J1" pin="2"/>
-      <node ref="R13" pin="1"/>
-      <node ref="C6" pin="1"/>
       <node ref="C4" pin="1"/>
+      <node ref="C6" pin="1"/>
+      <node ref="R13" pin="1"/>
+      <node ref="U3" pin="5"/>
       <node ref="C3" pin="1"/>
       <node ref="U2" pin="8"/>
       <node ref="R2" pin="1"/>
       <node ref="U1" pin="4"/>
     </net>
     <net code="2" name="+BATT">
-      <node ref="L1" pin="2"/>
-      <node ref="C5" pin="1"/>
       <node ref="BT1" pin="1"/>
-      <node ref="U3" pin="6"/>
       <node ref="U3" pin="3"/>
+      <node ref="U3" pin="6"/>
+      <node ref="C5" pin="1"/>
+      <node ref="L1" pin="2"/>
     </net>
     <net code="3" name="Net-(U1-Pad24)">
       <node ref="U1" pin="24"/>
     </net>
     <net code="4" name="/TOUCH_RECEIVE">
-      <node ref="R3" pin="1"/>
-      <node ref="C2" pin="1"/>
-      <node ref="BTN1" pin="1"/>
       <node ref="U1" pin="25"/>
+      <node ref="C2" pin="1"/>
+      <node ref="R3" pin="1"/>
+      <node ref="BTN1" pin="1"/>
     </net>
     <net code="5" name="Net-(U1-Pad27)">
       <node ref="U1" pin="27"/>
@@ -680,65 +682,65 @@
       <node ref="U1" pin="9"/>
     </net>
     <net code="11" name="GND">
-      <node ref="C6" pin="2"/>
-      <node ref="C5" pin="2"/>
       <node ref="D4" pin="1"/>
+      <node ref="D5" pin="1"/>
       <node ref="D3" pin="1"/>
+      <node ref="C5" pin="2"/>
+      <node ref="D9" pin="1"/>
+      <node ref="C6" pin="2"/>
+      <node ref="U1" pin="33"/>
       <node ref="C3" pin="2"/>
       <node ref="R14" pin="2"/>
       <node ref="D1" pin="1"/>
-      <node ref="D9" pin="1"/>
-      <node ref="D5" pin="1"/>
-      <node ref="U1" pin="21"/>
-      <node ref="U2" pin="12"/>
-      <node ref="U2" pin="10"/>
       <node ref="U3" pin="2"/>
+      <node ref="U2" pin="10"/>
+      <node ref="U1" pin="21"/>
       <node ref="U2" pin="5"/>
       <node ref="U2" pin="7"/>
-      <node ref="D2" pin="1"/>
+      <node ref="C2" pin="2"/>
       <node ref="C4" pin="2"/>
       <node ref="D8" pin="1"/>
       <node ref="D7" pin="1"/>
+      <node ref="D2" pin="1"/>
       <node ref="D6" pin="1"/>
-      <node ref="C1" pin="2"/>
+      <node ref="U2" pin="12"/>
+      <node ref="J1" pin="1"/>
       <node ref="BT1" pin="2"/>
       <node ref="ICSP1" pin="6"/>
-      <node ref="J1" pin="1"/>
       <node ref="U1" pin="5"/>
-      <node ref="U1" pin="33"/>
-      <node ref="C2" pin="2"/>
+      <node ref="C1" pin="2"/>
     </net>
     <net code="12" name="/LED_1">
-      <node ref="R5" pin="1"/>
       <node ref="U1" pin="17"/>
+      <node ref="R5" pin="1"/>
     </net>
     <net code="13" name="/LED_2">
-      <node ref="U1" pin="15"/>
       <node ref="R6" pin="1"/>
+      <node ref="U1" pin="15"/>
     </net>
     <net code="14" name="/SDA">
       <node ref="TP1" pin="1"/>
+      <node ref="R2" pin="2"/>
       <node ref="U1" pin="26"/>
       <node ref="U2" pin="6"/>
-      <node ref="R2" pin="2"/>
     </net>
     <net code="15" name="/SCL">
-      <node ref="R1" pin="2"/>
-      <node ref="U1" pin="23"/>
-      <node ref="TP2" pin="1"/>
       <node ref="U2" pin="4"/>
+      <node ref="U1" pin="23"/>
+      <node ref="R1" pin="2"/>
+      <node ref="TP2" pin="1"/>
     </net>
     <net code="16" name="/MISO">
       <node ref="ICSP1" pin="1"/>
       <node ref="U1" pin="31"/>
     </net>
     <net code="17" name="/LED_3">
-      <node ref="U1" pin="14"/>
       <node ref="R7" pin="1"/>
+      <node ref="U1" pin="14"/>
     </net>
     <net code="18" name="/LED_4">
-      <node ref="U1" pin="13"/>
       <node ref="R8" pin="1"/>
+      <node ref="U1" pin="13"/>
     </net>
     <net code="19" name="/LED_5">
       <node ref="U1" pin="10"/>
@@ -757,21 +759,21 @@
       <node ref="U1" pin="22"/>
     </net>
     <net code="23" name="/LED_8">
-      <node ref="U1" pin="2"/>
       <node ref="R12" pin="1"/>
+      <node ref="U1" pin="2"/>
     </net>
     <net code="24" name="/SCK">
       <node ref="ICSP1" pin="3"/>
       <node ref="U1" pin="32"/>
     </net>
     <net code="25" name="/MOSI">
-      <node ref="ICSP1" pin="4"/>
       <node ref="U1" pin="30"/>
+      <node ref="ICSP1" pin="4"/>
       <node ref="R3" pin="2"/>
     </net>
     <net code="26" name="/RESET">
-      <node ref="U1" pin="11"/>
       <node ref="ICSP1" pin="5"/>
+      <node ref="U1" pin="11"/>
     </net>
     <net code="27" name="Net-(U1-Pad1)">
       <node ref="U1" pin="1"/>
@@ -788,41 +790,41 @@
     <net code="31" name="Net-(U1-Pad20)">
       <node ref="U1" pin="20"/>
     </net>
-    <net code="32" name="Net-(D9-Pad2)">
-      <node ref="D9" pin="2"/>
-      <node ref="R12" pin="2"/>
-    </net>
-    <net code="33" name="Net-(D1-Pad2)">
-      <node ref="R4" pin="2"/>
+    <net code="32" name="Net-(D1-Pad2)">
       <node ref="D1" pin="2"/>
+      <node ref="R4" pin="2"/>
     </net>
-    <net code="34" name="Net-(D2-Pad2)">
-      <node ref="R5" pin="2"/>
-      <node ref="D2" pin="2"/>
-    </net>
-    <net code="35" name="Net-(D8-Pad2)">
-      <node ref="R11" pin="2"/>
-      <node ref="D8" pin="2"/>
-    </net>
-    <net code="36" name="Net-(D7-Pad2)">
-      <node ref="R10" pin="2"/>
-      <node ref="D7" pin="2"/>
-    </net>
-    <net code="37" name="Net-(D4-Pad2)">
+    <net code="33" name="Net-(D4-Pad2)">
       <node ref="R7" pin="2"/>
       <node ref="D4" pin="2"/>
     </net>
-    <net code="38" name="Net-(D3-Pad2)">
+    <net code="34" name="Net-(D9-Pad2)">
+      <node ref="R12" pin="2"/>
+      <node ref="D9" pin="2"/>
+    </net>
+    <net code="35" name="Net-(D2-Pad2)">
+      <node ref="D2" pin="2"/>
+      <node ref="R5" pin="2"/>
+    </net>
+    <net code="36" name="Net-(D3-Pad2)">
       <node ref="D3" pin="2"/>
       <node ref="R6" pin="2"/>
     </net>
-    <net code="39" name="Net-(D5-Pad2)">
-      <node ref="D5" pin="2"/>
-      <node ref="R8" pin="2"/>
+    <net code="37" name="Net-(D8-Pad2)">
+      <node ref="R11" pin="2"/>
+      <node ref="D8" pin="2"/>
     </net>
-    <net code="40" name="Net-(D6-Pad2)">
+    <net code="38" name="Net-(D7-Pad2)">
+      <node ref="R10" pin="2"/>
+      <node ref="D7" pin="2"/>
+    </net>
+    <net code="39" name="Net-(D6-Pad2)">
       <node ref="R9" pin="2"/>
       <node ref="D6" pin="2"/>
+    </net>
+    <net code="40" name="Net-(D5-Pad2)">
+      <node ref="R8" pin="2"/>
+      <node ref="D5" pin="2"/>
     </net>
     <net code="41" name="Net-(U2-Pad15)">
       <node ref="U2" pin="15"/>
@@ -846,8 +848,8 @@
       <node ref="U2" pin="9"/>
     </net>
     <net code="48" name="Net-(R13-Pad2)">
-      <node ref="U3" pin="4"/>
       <node ref="R13" pin="2"/>
+      <node ref="U3" pin="4"/>
       <node ref="R14" pin="1"/>
     </net>
     <net code="49" name="Net-(L1-Pad1)">
