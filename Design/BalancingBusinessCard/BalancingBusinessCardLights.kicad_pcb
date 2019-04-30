@@ -172,7 +172,7 @@
     (uvia_drill 0.1)
   )
 
-  (module CustomFootprints:MaxCardSilkscreen locked (layer F.Cu) (tedit 0) (tstamp 5CA07DD7)
+  (module CustomFootprints:MaxCardSilkscreen (layer F.Cu) (tedit 0) (tstamp 5CA0C904)
     (at 211.2 95 90)
     (fp_text reference G*** (at 0 0 90) (layer F.SilkS) hide
       (effects (font (size 1.524 1.524) (thickness 0.3)))
