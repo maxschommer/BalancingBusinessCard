@@ -85,6 +85,55 @@ int8_t detect_edge(uint32_t t)
 	return 0;
 }
 
+
+void initADC()
+{
+  /* this function initialises the ADC 
+
+        ADC Prescaler Notes:
+	--------------------
+
+	   ADC Prescaler needs to be set so that the ADC input frequency is between 50 - 200kHz.
+  
+           For more information, see table 17.5 "ADC Prescaler Selections" in 
+           chapter 17.13.2 "ADCSRA – ADC Control and Status Register A"
+          (pages 140 and 141 on the complete ATtiny25/45/85 datasheet, Rev. 2586M–AVR–07/10)
+
+           Valid prescaler values for various clock speeds
+	
+	     Clock   Available prescaler values
+           ---------------------------------------
+             1 MHz   8 (125kHz), 16 (62.5kHz)
+             4 MHz   32 (125kHz), 64 (62.5kHz)
+             8 MHz   64 (125kHz), 128 (62.5kHz)
+            16 MHz   128 (125kHz)
+
+           Below example set prescaler to 128 for mcu running at 8MHz
+           (check the datasheet for the proper bit values to set the prescaler)
+  */
+
+  // 8-bit resolution
+  // set ADLAR to 1 to enable the Left-shift result (only bits ADC9..ADC2 are available)
+  // then, only reading ADCH is sufficient for 8-bit results (256 values)
+  ADMUX =
+            (0 << REFS1) |     // left shift result
+            (0 << REFS0) |     // Sets ref. voltage to VCC, bit 1
+            (1 << ADLAR) |     // Sets ref. voltage to VCC, bit 0
+            (0 << MUX4)  |     // use ADC2 for input (PA1), MUX bit 4
+            (0 << MUX3)  |     // use ADC2 for input (PA1), MUX bit 3
+            (0 << MUX2)  |     // use ADC2 for input (PA1), MUX bit 2
+            (0 << MUX1)  |     // use ADC2 for input (PA1), MUX bit 1
+            (1 << MUX0);       // use ADC2 for input (PA1), MUX bit 0
+
+  ADCSRA = 
+            (1 << ADEN)  |     // Enable ADC 
+            (1 << ADPS2) |     // set prescaler to 16, bit 2 
+            (0 << ADPS1) |     // set prescaler to 16, bit 1 
+            (0 << ADPS0);      // set prescaler to 16, bit 0  
+}
+
+
+
 int main()
 {
 	// Configuring ATTiny
@@ -119,89 +168,110 @@ int main()
 	uint32_t message_duration = 1;
 	int8_t dir = 1; // 1 if moving right, -1 if moving left
 
-	while (1)
+	initADC();
+
+	while(1)
 	{
-		// Detect the left edge
-		uint32_t t = current_time();
 
-		// // Calculate current position
-		// float frac_time = float(t - lastEdgeTime) / estimated_period;
+		ADCSRA |= (1 << ADSC);         // start ADC measurement
+		while (ADCSRA & (1 << ADSC) ); // wait till conversion complete 
 
-		// float frac_space = frac_time;
-		// // if (frac_time > 0 && frac_time < 1.0)
-		// // {
-		// // 	frac_space = (-cos(frac_time * M_PI) + 1) / 2;
-		// // }
-
-		float frac_message = (t - message_start_time) / float(message_end_time - message_start_time);
-
-		// float frac_space = (-cos(frac_message * M_PI) + 1) / 2;
-
-		// if (dir>0 && frac_message>=0)
-		// {
-		// 	ShowLine(1 << int(frac_message * 9));
-		// }
-		// else
-		// {
-		// 	ShowLine(0);
-		// }
-
-		// (frac_space - before_message_frac) / (1 - 2 * before_message_frac);
-
-		// Display
-		if (frac_message >= 0.0 && frac_message < 1.0)
+		if (ADCH > 128)
 		{
-			size_t currentIndex = frac_message * flashPattern.length;
+		  // ADC input voltage is more than half of VCC
+			ShowLine(1);
 
-			if (dir > 0)
-			{
-				currentIndex = flashPattern.length - currentIndex - 1;
-			}
-
-			ShowLine(flashPattern.data[currentIndex]);
-		}
-		else
-		{
+		} else {
 			ShowLine(0);
+		  // ADC input voltage is less than half of VCC
 
-			// Check for an edge, update variables if found
-			int8_t edge = detect_edge(t);
-
-			if (edge == -1)
-			{
-				// Detected a left edge
-				dir = edge;
-				lastLeftEdgeTime = t;
-
-				message_start_time = lastLeftEdgeTime + (estimated_period * before_message_frac);
-				message_end_time = lastLeftEdgeTime + (estimated_period * (1 - before_message_frac));
-				message_duration = message_end_time - message_start_time;
-			}
-			else if (edge == 1)
-			{
-				// Detected a right edge
-				dir = edge;
-
-				// Estimate the period
-				estimated_period = t - lastLeftEdgeTime;
-				if (estimated_period > 10000)
-				{
-					estimated_period = 10000;
-				}
-
-				uint32_t detected_delay = t - message_end_time;
-				if (detected_delay > 10000 || detected_delay < 0)
-				{
-					// Do not display a message
-					message_start_time = 0;
-					message_end_time = 1;
-				}
-				else
-				{
-					message_start_time = t + detected_delay;
-					message_end_time = message_start_time + message_duration;
-				}
-			}
 		}
+
 	}
+
+	// while (1)
+	// {
+	// 	// Detect the left edge
+	// 	uint32_t t = current_time();
+
+	// 	// // Calculate current position
+	// 	// float frac_time = float(t - lastEdgeTime) / estimated_period;
+
+	// 	// float frac_space = frac_time;
+	// 	// // if (frac_time > 0 && frac_time < 1.0)
+	// 	// // {
+	// 	// // 	frac_space = (-cos(frac_time * M_PI) + 1) / 2;
+	// 	// // }
+
+	// 	float frac_message = (t - message_start_time) / float(message_end_time - message_start_time);
+
+	// 	// float frac_space = (-cos(frac_message * M_PI) + 1) / 2;
+
+	// 	// if (dir>0 && frac_message>=0)
+	// 	// {
+	// 	// 	ShowLine(1 << int(frac_message * 9));
+	// 	// }
+	// 	// else
+	// 	// {
+	// 	// 	ShowLine(0);
+	// 	// }
+
+	// 	// (frac_space - before_message_frac) / (1 - 2 * before_message_frac);
+
+	// 	// Display
+	// 	if (frac_message >= 0.0 && frac_message < 1.0)
+	// 	{
+	// 		size_t currentIndex = frac_message * flashPattern.length;
+
+	// 		if (dir > 0)
+	// 		{
+	// 			currentIndex = flashPattern.length - currentIndex - 1;
+	// 		}
+
+	// 		ShowLine(flashPattern.data[currentIndex]);
+	// 	}
+	// 	else
+	// 	{
+	// 		ShowLine(0);
+
+	// 		// Check for an edge, update variables if found
+	// 		int8_t edge = detect_edge(t);
+
+	// 		if (edge == -1)
+	// 		{
+	// 			// Detected a left edge
+	// 			dir = edge;
+	// 			lastLeftEdgeTime = t;
+
+	// 			message_start_time = lastLeftEdgeTime + (estimated_period * before_message_frac);
+	// 			message_end_time = lastLeftEdgeTime + (estimated_period * (1 - before_message_frac));
+	// 			message_duration = message_end_time - message_start_time;
+	// 		}
+	// 		else if (edge == 1)
+	// 		{
+	// 			// Detected a right edge
+	// 			dir = edge;
+
+	// 			// Estimate the period
+	// 			estimated_period = t - lastLeftEdgeTime;
+	// 			if (estimated_period > 10000)
+	// 			{
+	// 				estimated_period = 10000;
+	// 			}
+
+	// 			uint32_t detected_delay = t - message_end_time;
+	// 			if (detected_delay > 10000 || detected_delay < 0)
+	// 			{
+	// 				// Do not display a message
+	// 				message_start_time = 0;
+	// 				message_end_time = 1;
+	// 			}
+	// 			else
+	// 			{
+	// 				message_start_time = t + detected_delay;
+	// 				message_end_time = message_start_time + message_duration;
+	// 			}
+	// 		}
+	// 	}
+	// }
 }
