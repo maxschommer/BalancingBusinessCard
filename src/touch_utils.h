@@ -5,10 +5,9 @@
 // Recieve: PA1
 // Send: PB0
 
-
 void initADC()
 {
-  /* this function initialises the ADC 
+    /* this function initialises the ADC 
 
         ADC Prescaler Notes:
 	--------------------
@@ -32,27 +31,25 @@ void initADC()
            (check the datasheet for the proper bit values to set the prescaler)
   */
 
-  // 8-bit resolution
-  // set ADLAR to 1 to enable the Left-shift result (only bits ADC9..ADC2 are available)
-  // then, only reading ADCH is sufficient for 8-bit results (256 values)
-  ADMUX =
-            (0 << REFS1) |     // left shift result
-            (0 << REFS0) |     // Sets ref. voltage to VCC, bit 1
-            (1 << ADLAR) |     // Sets ref. voltage to VCC, bit 0
-            (0 << MUX4)  |     // use ADC2 for input (PA1), MUX bit 4
-            (0 << MUX3)  |     // use ADC2 for input (PA1), MUX bit 3
-            (0 << MUX2)  |     // use ADC2 for input (PA1), MUX bit 2
-            (0 << MUX1)  |     // use ADC2 for input (PA1), MUX bit 1
-            (1 << MUX0);       // use ADC2 for input (PA1), MUX bit 0
+    // 8-bit resolution
+    // set ADLAR to 1 to enable the Left-shift result (only bits ADC9..ADC2 are available)
+    // then, only reading ADCH is sufficient for 8-bit results (256 values)
+    ADMUX =
+        (0 << REFS1) | // left shift result
+        (0 << REFS0) | // Sets ref. voltage to VCC, bit 1
+        (1 << ADLAR) | // Sets ref. voltage to VCC, bit 0
+        (0 << MUX4) |  // use ADC2 for input (PA1), MUX bit 4
+        (0 << MUX3) |  // use ADC2 for input (PA1), MUX bit 3
+        (0 << MUX2) |  // use ADC2 for input (PA1), MUX bit 2
+        (0 << MUX1) |  // use ADC2 for input (PA1), MUX bit 1
+        (1 << MUX0);   // use ADC2 for input (PA1), MUX bit 0
 
-  ADCSRA = 
-            (1 << ADEN)  |     // Enable ADC 
-            (1 << ADPS2) |     // set prescaler to 16, bit 2 
-            (0 << ADPS1) |     // set prescaler to 16, bit 1 
-            (0 << ADPS0);      // set prescaler to 16, bit 0  
+    ADCSRA =
+        (1 << ADEN) |  // Enable ADC
+        (1 << ADPS2) | // set prescaler to 16, bit 2
+        (0 << ADPS1) | // set prescaler to 16, bit 1
+        (0 << ADPS0);  // set prescaler to 16, bit 0
 }
-
-
 
 void write_touch_output(bool high)
 {
@@ -68,13 +65,26 @@ void write_touch_output(bool high)
 
 bool get_touch_recieve()
 {
-    return PORTA & (1 << PA1);
+    ADCSRA |= (1 << ADSC); // start ADC measurement
+    while (ADCSRA & (1 << ADSC))
+    {
+        // wait till conversion complete
+    }
+
+    return ADCH > 128;
 }
 
 uint8_t touch_test()
 {
-    static bool high = false;
-    high = !high;
-    write_touch_output(high);
-    return get_touch_recieve() ? 2 : 1;
+    write_touch_output(true);
+
+    int count = 0;
+
+    while (!get_touch_recieve())
+    {
+        count++;
+    }
+
+    write_touch_output(false);
+    return count;
 }

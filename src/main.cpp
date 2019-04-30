@@ -130,6 +130,15 @@ int main()
 
 	while (1)
 	{
+		uint16_t val = touch_test();
+		ShowLine(val);
+		_delay_ms(100);
+		ShowLine(0);
+		_delay_ms(400);
+	}
+
+	while (1)
+	{
 		// Detect the left edge
 		uint32_t t = current_time();
 
