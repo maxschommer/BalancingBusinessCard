@@ -6,7 +6,7 @@ CLOCK      = 1000000
 PROGRAMMER = -c avrisp2 
 OBJECTS    = main.o TinyWireM.o USI_TWI_Master.o
 
-main.o : main.cpp alphabet.h TinyWireM.h
+main.o : main.cpp alphabet.h TinyWireM.h accelerometer_utils.h touch_utils.h
 
 USI_TWI_Master.o : USI_TWI_Master.cpp
 

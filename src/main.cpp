@@ -17,6 +17,7 @@
 
 #include "alphabet.h"
 #include "accelerometer_utils.h"
+#include "touch_utils.h"
 
 void Init_ACC()
 {												   // Setup the LIS3DHTR
@@ -36,10 +37,11 @@ float read_accel()
 void ShowLine(uint16_t line)
 {
 	PORTA = (PORTA & (~(0b000011111 << 3))) | (line & 0b000011111) << 3; // LED0, LED1, LED2, LED3, LED4
-	PORTB = ((line & 0b000100000) << 1);								 // LED5
-	PORTB |= ((line & 0b001000000) >> 1);								 // LED6
-	PORTB |= ((line & 0b010000000) >> 3);								 // LED7
-	PORTB |= ((line & 0b100000000) >> 5);								 // LED8
+	PORTB = (PORTB & (~0b01111000)) |									 // Preserve TOUCH_SEND
+			((line & 0b000100000) << 1) |								 // LED5
+			((line & 0b001000000) >> 1) |								 // LED6
+			((line & 0b010000000) >> 3) |								 // LED7
+			((line & 0b100000000) >> 5);								 // LED8
 }
 
 // current_time returns the current time in increments of about 0.1 ms (1 tick), 0.000128s for 2MHz clock
@@ -96,7 +98,7 @@ int main()
 
 	USICR = 1 << USIWM1; // Enable Two-Wire mode of USI register
 
-	DDRB = 0b01111010; // Set LEDs on port B as output
+	DDRB = 0b01111011; // Set LEDs on port B as output, and the touch send PB0
 	DDRA = 0b11111000; // Set LEDs on port A as output
 	TinyWireM.begin(); // initialize I2C lib
 
