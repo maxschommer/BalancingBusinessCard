@@ -115,7 +115,8 @@ int main()
 	const float before_message_frac = 0.2; // Target fraction of cycle waiting before display
 
 	// Generate Flash Pattern
-	struct FlashPattern flashPattern = convertString(message, kerning);
+	FlashPattern flashPattern;
+	convertString(message, kerning, &flashPattern);
 	long double timeToWait;
 
 	// Variable Initializations
@@ -128,17 +129,6 @@ int main()
 
 	TouchSense touch;
 	touch.threshold = 10;
-	while (1)
-	{
-		if (touch.just_pressed()){
-			message_idx++;
-		}
-		// uint16_t val = touch.read_val();
-		ShowLine(message_idx);
-		_delay_ms(10);
-		// ShowLine(0);
-		// _delay_ms(400);
-	}
 
 	while (1)
 	{
@@ -184,6 +174,23 @@ int main()
 		else
 		{
 			ShowLine(0);
+
+			// Check for and handle a button press
+			if (touch.just_pressed())
+			{
+				int ms = 0;
+				while (ms < 1000){
+					ShowLine(message_idx);
+					_delay_ms(10);
+					ms += 10;
+					if (touch.just_pressed()){
+						message_idx++;
+						ms = 0;
+					}
+				}
+				message = messages[message_idx % (sizeof(messages) / sizeof(messages[0]))];
+				convertString(message, kerning, &flashPattern);
+			}
 
 			// Check for an edge, update variables if found
 			int8_t edge = detect_edge(t);

@@ -15,7 +15,7 @@ const uint16_t TestLEDS[] = {
 struct FlashPattern
 {
 	int length;
-	uint16_t *data; // Pointer to take dynamically sized data
+	uint16_t data[64]; // Data for columns
 };
 
 const uint16_t Alphabet[27][5] = {
@@ -187,11 +187,15 @@ const uint16_t Alphabet[27][5] = {
 // Given an inputString and letterKerning, convert the string
 // to an array of uint16_t which is the message to be flashed
 // by the LEDs
-struct FlashPattern convertString(char inputString[], uint8_t letterKerning)
+// Returns 0 if successful
+int convertString(char *inputString, uint8_t letterKerning, FlashPattern *res)
 {
-	struct FlashPattern res;
 	int numItems = strlen(inputString) * 5 + ((strlen(inputString)) * letterKerning);
-	uint16_t *data = (uint16_t *)malloc(numItems); // Dynamically create array (remember to free)
+	if (numItems > sizeof(res->data)/sizeof(res->data[0])){
+		convertString("ERR", 1, res);
+		return 1;
+		// MESSAGE TOO LONG
+	}
 
 	// Iterate through input string
 	for (uint16_t i = 0; i < strlen(inputString); i++)
@@ -204,18 +208,17 @@ struct FlashPattern convertString(char inputString[], uint8_t letterKerning)
 
 		for (int j = 0; j < 5; j++)
 		{
-			data[(5 + letterKerning) * i + j] = Alphabet[c - 65][j];
+			res->data[(5 + letterKerning) * i + j] = Alphabet[c - 65][j];
 		}
 
 		// Assign kerning spaces
 		uint8_t k;
 		for (k = 0; k < letterKerning; k++)
 		{
-			data[(5 + letterKerning) * i + 5 + k] = 0;
+			res->data[(5 + letterKerning) * i + 5 + k] = 0;
 		}
 	}
 
-	res.length = numItems;
-	res.data = data;
-	return res;
+	res->length = numItems;
+	return 0;
 }
