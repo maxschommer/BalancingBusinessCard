@@ -152,7 +152,12 @@ int main()
 	Init_ACC();
 
 	// Message Display Parameters
-	char message[] = "MAX ERIC";		   // Message to display
+	char *messages[2];
+	messages[0] = "MAX";
+	messages[1] = "ERIC";
+
+	int message_idx = 0;
+	char *message = messages[message_idx]; // Message to display
 	int kerning = 2;					   // Space between letters, in bars
 	const float before_message_frac = 0.2; // Target fraction of cycle waiting before display
 
