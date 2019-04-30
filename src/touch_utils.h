@@ -31,7 +31,7 @@ class TouchSense
     }
 
     // Returns true once each time the button has been newly pressed.
-    inline bool just_presseds(){
+    inline bool just_pressed(){
         bool val = read();
         if (val && !last_value){
             last_value = val;

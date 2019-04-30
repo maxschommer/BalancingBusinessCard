@@ -130,7 +130,7 @@ int main()
 	touch.threshold = 10;
 	while (1)
 	{
-		if (touch.just_presseds()){
+		if (touch.just_pressed()){
 			message_idx++;
 		}
 		// uint16_t val = touch.read_val();
