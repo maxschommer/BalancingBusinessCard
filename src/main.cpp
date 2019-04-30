@@ -126,8 +126,6 @@ int main()
 	uint32_t message_duration = 1;
 	int8_t dir = 1; // 1 if moving right, -1 if moving left
 
-	initADC();
-
 	while (1)
 	{
 		uint16_t val = touch_test();
