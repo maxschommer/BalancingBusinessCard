@@ -18,7 +18,7 @@ struct FlashPattern
 	uint16_t data[64]; // Data for columns
 };
 
-const uint16_t Alphabet[27][5] = {
+static const uint16_t Alphabet[27][5] = {
 	{// A
 	 0b111111111,
 	 0b000010001,
