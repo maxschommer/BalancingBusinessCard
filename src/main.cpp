@@ -126,13 +126,18 @@ int main()
 	uint32_t message_duration = 1;
 	int8_t dir = 1; // 1 if moving right, -1 if moving left
 
+	TouchSense touch;
+	touch.threshold = 10;
 	while (1)
 	{
-		uint16_t val = touch_test();
-		ShowLine(val);
-		_delay_ms(100);
-		ShowLine(0);
-		_delay_ms(400);
+		if (touch.just_presseds()){
+			message_idx++;
+		}
+		// uint16_t val = touch.read_val();
+		ShowLine(message_idx);
+		_delay_ms(10);
+		// ShowLine(0);
+		// _delay_ms(400);
 	}
 
 	while (1)
