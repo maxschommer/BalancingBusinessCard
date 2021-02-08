@@ -398,7 +398,7 @@
     "last_paths": {
       "gencad": "",
       "idf": "",
-      "netlist": "BalancingBusinessCardLights.net",
+      "netlist": "business_card.net",
       "specctra_dsn": "",
       "step": "../../../../../Downloads/bb_lights_new.step",
       "vrml": ""
