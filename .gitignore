@@ -2,7 +2,9 @@
 **/.svg2shenzhen-cache
 **/src/build
 **/src/Debug
-
+*.idea
+*.vscode
+*.vs
 
 # Temporary files
 *.000
