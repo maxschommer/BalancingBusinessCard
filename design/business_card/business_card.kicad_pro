@@ -50,12 +50,27 @@
       },
       "diff_pair_dimensions": [
         {
-          "gap": 0.25,
-          "via_gap": 0.25,
-          "width": 0.2
+          "gap": 0.0,
+          "via_gap": 0.0,
+          "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "clearance|223600000|74569000|8b96a634-e018-4937-8109-8f809f52a446|3592b53c-8264-4017-a518-3071d7b04fc5",
+        "clearance|225400000|65169000|6fdd4128-41ab-4867-bf0e-dfadeb84048e|a8f78428-6c1e-45e8-9684-58731631b327",
+        "clearance|225400000|65169000|6fdd4128-41ab-4867-bf0e-dfadeb84048e|b66fe576-8425-486d-ab19-acfc3f2baf47",
+        "clearance|225400000|74569000|2bfa6875-c031-47e1-9507-5656c0b4ca3b|a8f78428-6c1e-45e8-9684-58731631b327",
+        "copper_edge_clearance|190820000|63000000|f323e82c-ffd3-408c-904b-a0f73d90fe24|b9d049d5-7aed-458d-a671-a643a43a4c31",
+        "copper_edge_clearance|195820000|63000000|05c1a2ba-6784-4bd5-9131-9a7fd5038d0a|b9d049d5-7aed-458d-a671-a643a43a4c31",
+        "copper_edge_clearance|195820000|63000000|0c212160-b3d9-468b-9dcd-af343a72c3b1|b9d049d5-7aed-458d-a671-a643a43a4c31",
+        "copper_edge_clearance|196820000|63000000|1df0d81e-0eaa-4aac-b9df-5af651e1d4a6|5d7d4b9a-a6cd-4e50-bd52-7fd39e2b4035",
+        "copper_edge_clearance|203820000|84000000|a41d5d97-6fa2-47f8-8896-5ef871857492|5d7d4b9a-a6cd-4e50-bd52-7fd39e2b4035",
+        "copper_edge_clearance|204820000|63000000|7bf94654-652a-4bcf-880a-23a9cf31f754|fe8cb5fd-d804-4038-adfc-c6ace72ff107",
+        "copper_edge_clearance|209820000|63000000|d7bb0787-dd65-4b40-b824-9d77651d8e45|fe8cb5fd-d804-4038-adfc-c6ace72ff107",
+        "copper_edge_clearance|209820000|63000000|df383670-0c19-4c7e-87de-13df51158dd6|fe8cb5fd-d804-4038-adfc-c6ace72ff107",
+        "silk_over_copper|194912240|81914638|3ebc07e3-53c5-4eae-8b34-b3ef5eb7060d|b9d049d5-7aed-458d-a671-a643a43a4c31",
+        "silk_over_copper|208279608|67442389|3ebc07e3-53c5-4eae-8b34-b3ef5eb7060d|fe8cb5fd-d804-4038-adfc-c6ace72ff107"
+      ],
       "meta": {
         "version": 1
       },
@@ -114,20 +129,21 @@
         "min_track_width": 0.19999999999999998,
         "min_via_annular_width": 0.049999999999999996,
         "min_via_diameter": 0.39999999999999997,
-        "solder_mask_clearance": 0.051,
-        "solder_mask_min_width": 0.25,
+        "solder_mask_clearance": 0.0,
+        "solder_mask_min_width": 0.0,
         "solder_paste_clearance": 0.0,
-        "solder_paste_margin_ratio": 0.0
+        "solder_paste_margin_ratio": -0.0
       },
       "track_widths": [
-        0.25,
+        0.0,
+        0.2,
         0.4,
         3.0
       ],
       "via_dimensions": [
         {
-          "diameter": 0.8,
-          "drill": 0.4
+          "diameter": 0.0,
+          "drill": 0.0
         }
       ],
       "zones_allow_external_fillets": false,
@@ -436,7 +452,7 @@
   },
   "sheets": [
     [
-      "d87eca5b-188c-4954-b4c4-5ce7bb7a94b7",
+      "4793c031-8533-439e-ac7b-e10bc008ab4a",
       ""
     ]
   ],

@@ -1,6 +1,6 @@
 **-cache.lib
 **/.svg2shenzhen-cache
-**/src/build
+**/design/business_card/build
 **/src/Debug
 *.idea
 *.vscode
