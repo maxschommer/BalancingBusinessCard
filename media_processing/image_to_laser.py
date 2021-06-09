@@ -83,7 +83,7 @@ def image_to_laser(
                 x_start = max_x
                 x_end = min_x
 
-            l_g.write(f'G1 X{x_start / dpmm} Y{y_val} S0')
+            l_g.write(f'G1 X{x_start / dpmm:.4f} Y{y_val:.4f} S0')
             l_g._update_current_position(
                 mode='absolute', x=x_start / dpmm, y=y_val)
             row_diff = np.diff(row, prepend=row[0])
@@ -94,18 +94,20 @@ def image_to_laser(
             for laser_event in laser_events:
                 if row_dir * row_diff[laser_event] > 0:
                     l_g.write(
-                        f'G1 X{laser_event / dpmm} Y{y_val} S{laser_power}')
+                        f'G1 X{laser_event / dpmm:.4f} Y{y_val:.4f} S{laser_power}')
                 else:
-                    l_g.write(f'G1 X{laser_event / dpmm} Y{y_val} S0')
+                    l_g.write(f'G1 X{laser_event / dpmm:.4f} Y{y_val:.4f} S0')
                 l_g._update_current_position(
                     mode='absolute', x=laser_event / dpmm, y=y_val)
-            l_g.write(f'G1 X{x_end / dpmm} Y{y_val} S0')
+            l_g.write(f'G1 X{x_end / dpmm:.4f} Y{y_val:.4f} S0')
             l_g._update_current_position(
                 mode='absolute', x=x_end / dpmm, y=y_val)
             row_dir *= -1
 
         if preview:
             l_g.view()
+
+        l_g.abs_move(0, 0, 0, rapid=True)
         l_g.write('$32=0')  # Laser mode off
 
 

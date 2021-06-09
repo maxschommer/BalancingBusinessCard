@@ -103,6 +103,7 @@ def laser_calibration(
         l_g.feed(speed)
 
         l_g.move(0, 0)
+        l_g.write('M3 S0')  # Turn the laser on at 0 power
 
         for i, h in enumerate(np.linspace(z_min, z_max, int((z_max - z_min) / z_step))):
             x = i * x_step
@@ -135,6 +136,7 @@ def laser_calibration(
         if preview:
             l_g.view()
         l_g.write('$32=0')  # Laser mode off
+        l_g.abs_move(0, 0, 0, rapid=True)
 
 
 if __name__ == "__main__":
