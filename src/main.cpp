@@ -28,8 +28,6 @@ void Init_ACC()
 // Gets the current x-axis acceleration in m/s
 float read_accel()
 {
-	// TODO: read all 10 bits
-	// int raw = lis3dhReadInt(LIS3DH_OUT_X_L); // 10 bits of data
 	int8_t raw = lis3dhReadByte(LIS3DH_OUT_X_H);
 	return (int16_t(raw) << 2) * 0.004 * 9.8 * 8; // 4 milligees per digit in +-2g mode
 }
@@ -110,9 +108,9 @@ int main()
 	messages[1] = "ERIC";
 
 	int message_idx = 0;
-	char *message = messages[message_idx]; // Message to display
-	int kerning = 2;					   // Space between letters, in bars
-	const float before_message_frac = 0.2; // Target fraction of cycle waiting before display
+	char *message = messages[message_idx];                  // Message to display
+	int kerning = 2;					// Space between letters, in bars
+	const float before_message_frac = 0.2;                  // Target fraction of cycle waiting before display
 
 	// Generate Flash Pattern
 	FlashPattern flashPattern;
@@ -120,7 +118,7 @@ int main()
 	long double timeToWait;
 
 	// Variable Initializations
-	uint32_t lastLeftEdgeTime = current_time(); // Time that the last acceleration peak was detected
+	uint32_t lastLeftEdgeTime = current_time();             // Time that the last acceleration peak was detected
 	uint32_t estimated_period = 10000;			// In ticks, time to sweep right
 	uint32_t message_start_time = 0;
 	uint32_t message_end_time = 1;
@@ -135,29 +133,7 @@ int main()
 		// Detect the left edge
 		uint32_t t = current_time();
 
-		// // Calculate current position
-		// float frac_time = float(t - lastEdgeTime) / estimated_period;
-
-		// float frac_space = frac_time;
-		// // if (frac_time > 0 && frac_time < 1.0)
-		// // {
-		// // 	frac_space = (-cos(frac_time * M_PI) + 1) / 2;
-		// // }
-
 		float frac_message = (t - message_start_time) / float(message_end_time - message_start_time);
-
-		// float frac_space = (-cos(frac_message * M_PI) + 1) / 2;
-
-		// if (dir>0 && frac_message>=0)
-		// {
-		// 	ShowLine(1 << int(frac_message * 9));
-		// }
-		// else
-		// {
-		// 	ShowLine(0);
-		// }
-
-		// (frac_space - before_message_frac) / (1 - 2 * before_message_frac);
 
 		// Display
 		if (frac_message >= 0.0 && frac_message < 1.0)
