@@ -1,4 +1,5 @@
 import time
+from typing import List
 from functools import partial
 import signal
 import sys
@@ -10,7 +11,7 @@ import plac
 import serial
 
 # Uncomment the line below to mock the serial port
-import media_processing.fake_serial as serial
+# import card_manufacturing.fake_serial as serial
 
 RX_BUFFER_SIZE = 128
 
@@ -19,7 +20,7 @@ RX_BUFFER_SIZE = 128
 g_consumed = 0
 g_error = 0
 g_sent = 0
-g_buffer = []
+g_buffer: List[int] = []
 is_absolute = False
 
 

@@ -34,3 +34,4 @@ fp-info-cache
 *.csv
 
 __pycache__
+*.egg-info
