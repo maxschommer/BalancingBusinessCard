@@ -8,7 +8,9 @@ from pathlib import Path
 import logging
 import plac
 import serial
-# import media_processing.fake_serial as serial
+
+# Uncomment the line below to mock the serial port
+import media_processing.fake_serial as serial
 
 RX_BUFFER_SIZE = 128
 
@@ -22,10 +24,10 @@ is_absolute = False
 
 
 def clean(conn: serial.Serial):
-    """Clean the serial port 
+    """Clean the serial port from 
 
     Args:
-        conn (serial.Serial): [description]
+        conn (serial.Serial): The serial connection to clean.
     """
     global g_consumed
     global g_error
@@ -72,15 +74,21 @@ def signal_handler(conn, signal, frame):
 
 @plac.pos('file', 'the gcode file to stream', type=Path)
 @plac.annotations(
-    device_file=('the serial device path'),
-    baud_rate=('the baud rate of the device to stream to',
-               'option', 'br', int),
-    zero_cnc=('zero the CNC to cut from it\'s current position.',
-              'flag', 'zc'),
-    log_level=('the log level for the program. Options are "DEBUG",'
-               '"INFO", "WARNING", "ERROR", and "CRITICAL".', 'option',
-               'll', str, ["DEBUG", "INFO", "WARNING", "ERROR",
-                           "CRITICAL"])
+    device_file=(
+        'the serial device path'
+    ),
+    baud_rate=(
+        'the baud rate of the device to stream to',
+        'option', 'br', int),
+    zero_cnc=(
+        'zero the CNC to cut from it\'s current position.',
+        'flag', 'zc'
+    ),
+    log_level=(
+        'the log level for the program. Options are "DEBUG",'
+        '"INFO", "WARNING", "ERROR", and "CRITICAL".', 'option',
+        'll', str, ["DEBUG", "INFO", "WARNING", "ERROR",
+                    "CRITICAL"])
 )
 def gcode_streamer(
     file: Path,
@@ -89,6 +97,9 @@ def gcode_streamer(
     zero_cnc: bool = False,
     log_level: str = "INFO"
 ):
+    """Stream GCODE to a GRBL device using an aggressive streaming protocol
+    which attempts to keep the buffer on the machine as full as possible.
+    """
     global g_consumed
     global g_error
     global g_sent
@@ -103,16 +114,13 @@ def gcode_streamer(
         logging.info("Initializing grbl")
         s_conn.write("\r\n\r\n".encode())
         resp = s_conn.readline()
-        print(f"RESP: {resp}")
-        resp = s_conn.readline()
-        print(f"RESP: {resp}")
-        resp = s_conn.readline()
-        print(f"RESP: {resp}")
+
         time.sleep(2)
         s_conn.flushInput()
         s_conn.write("$X\n".encode())
         resp = s_conn.readline().strip().decode()
         logging.info(f"Unlocked: {resp}")
+
         if zero_cnc:
             send_and_log(s_conn, "G92X0Y0Z0\n")
             send_and_log(s_conn, "G10L20P1X0Y0Z0\n")
@@ -149,21 +157,11 @@ def gcode_streamer(
                 g_sent = i
                 logging.info(f"SND>{i}: '{line}'")
 
-            while g_sent > g_consumed:
-                grbl_resp = s_conn.readline().strip().decode()
-                # Debug response
-                if grbl_resp.find('ok') < 0 and grbl_resp.find('error') < 0:
-                    logging.info(f"MSG: '{grbl_resp}'")
-                else:  # Interpreted GCode response
-                    if grbl_resp.find('error') >= 0:
-                        logging.warning(f"GCode Error: {grbl_resp}")
-                        g_error += 1
-                    g_consumed += 1
-                    logging.info(f"REC<{g_consumed}: '{grbl_resp}'")
-                    del g_buffer[0]
+            clean(s_conn)
 
         # We have no way of knowing when gcode is done being executed, so we just
-        # wait for a bit.
+        # wait for a bit. Optionally, we could wait for user input, but this
+        # is more automated.
         time.sleep(5)
         t_end = time.time()
         logging.info("G-code streaming finished!")

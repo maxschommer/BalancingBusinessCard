@@ -5,33 +5,56 @@ import cv2
 import numpy as np
 from mecode import G
 
+DPMM_PER_DPI = 0.03937008
+
 
 @plac.annotations(
-    image=('the image to convert into g-code for a laser cutter.'),
-    dpi=('if provided, override the default DPI of the image for gcode'
-         ' generation. If dpi is not availiable in the image header and'
-         ' this argument isn\'t provided, then an error will be thrown.',
-         'option', 'dpi', float),
-    lines_per_mm=('the number of laser lines to etch per millimeter.',
-                  'option', 'lpm', float),
-    laser_power=('the power of the laser to use in black areas of the'
-                 ' image. Should be a value greater than 0 and less than 10000.',
-                 'option', 'lp', int),
-    speed=('the speed to move the head of the laser in mm/min.',
-           'option', 's', float),
-    preview=('preview the laser etch operation.', 'flag', 'p'),
-    out=('the output file name of the generated gcode. By default is the same'
-         ' name as the image but with a `.nc` extension.', 'option')
+    image=(
+        'the image to convert into g-code for a laser cutter.'
+    ),
+    dpi=(
+        'if provided, override the default DPI of the image for gcode'
+        ' generation. If dpi is not availiable in the image header and this'
+        ' argument isn\'t provided, then an error will be thrown.',
+        'option', 'dpi', float
+    ),
+    invert_image=(
+        'if provided, then invert the image before computing passes', 'flag',
+        'ii'
+    ),
+    lines_per_mm=(
+        'the number of laser lines to etch per millimeter.',
+        'option', 'lpm', float
+    ),
+    laser_power=(
+        'the power of the laser to use in black areas of the image. Should be a'
+        ' value greater than 0 and less than 10000.', 'option', 'lp', int
+    ),
+    speed=(
+        'the speed to move the head of the laser in mm/min.',
+        'option', 's', float
+    ),
+    preview=(
+        'preview the laser etch operation.', 'flag', 'p'
+    ),
+    out=(
+        'the output file name of the generated gcode. By default is the same'
+        ' name as the image but with a `.nc` extension.', 'option'
+    )
 )
 def image_to_laser(
     image: str,
     dpi: float = None,
+    invert_image: bool = False,
     lines_per_mm: float = 8,
     laser_power: int = 7000,
     speed: float = 500,
     preview: bool = False,
     out: str = None
 ):
+    """Convert an image to GCODE for a GRBL machine. This uses "Laser mode" and
+    thus the firmware of your machine should be up to date.
+    """
     if out is None:
         out = os.path.splitext(os.path.basename(image))[0] + '.nc'
     pil_img = Image.open(image)
@@ -45,7 +68,7 @@ def image_to_laser(
             raise ValueError(
                 "DPI is not provided by the image and must be given as a parameter.")
 
-    dpmm = 0.03937008 * dpi  # Convert to dots per mm
+    dpmm = DPMM_PER_DPI * dpi  # Convert to dots per mm
 
     background = Image.new("RGB", pil_img.size, (255, 255, 255))
     background.paste(pil_img, mask=pil_img.split()
@@ -53,9 +76,13 @@ def image_to_laser(
     pil_img = background
 
     img = np.array(pil_img)
+
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     _, img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+
+    if invert_image:
+        img = ~img
 
     new_height = int(img.shape[0] / dpmm * lines_per_mm)
     img = cv2.resize(img, (img.shape[1], new_height))

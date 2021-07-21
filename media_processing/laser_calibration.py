@@ -92,6 +92,12 @@ def laser_calibration(
     preview: bool = False,
     out: str = None
 ):
+    """Generate GCODE for a GRBL machine to create laser etch paths designed to
+    calibrate the Z offset of a laser etcher. 
+
+    NOTE: This only applies to laser machines with a Z axis (such as a CNC with
+    a laser engraver).
+    """
     if out is None:
         out = 'laser_cal.nc'
 
