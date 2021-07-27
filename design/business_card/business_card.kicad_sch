@@ -1,4 +1,4 @@
-(kicad_sch (version 20210406) (generator eeschema)
+(kicad_sch (version 20210621) (generator eeschema)
 
   (uuid 2ce39a69-e5ff-486f-b89b-8982ff967ae4)
 
@@ -584,7 +584,7 @@
           (number "10" (effects (font (size 1.27 1.27))))
         )
         (pin bidirectional line (at 17.78 -20.32 180) (length 2.54)
-          (name "~RESET~/PB7" (effects (font (size 1.27 1.27))))
+          (name "~{RESET}/PB7" (effects (font (size 1.27 1.27))))
           (number "11" (effects (font (size 1.27 1.27))))
         )
         (pin no_connect line (at -15.24 -5.08 0) (length 2.54) hide
